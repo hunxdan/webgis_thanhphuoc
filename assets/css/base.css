@@ -1,0 +1,91 @@
+/* base.css — nền tảng thiết kế "Địa bạ số": giấy kem · lục thẫm · son đỏ */
+@font-face { font-family: 'Lora'; src: url('../fonts/lora.woff') format('woff'); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lora'; src: url('../fonts/lora-italic.woff') format('woff'); font-weight: 400 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/inter-400.woff') format('woff'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/inter-500.woff') format('woff'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/inter-600.woff') format('woff'); font-weight: 600 700; font-display: swap; }
+
+:root {
+  --r: 0; --r-s: 0;
+  --paper: #f3e8d3;      /* 60% */
+  --paper-2: #eadcbf;
+  --paper-3: #dccba5;
+  --green: #025a4c;      /* 30% */
+  --green-2: #0a7563;
+  --ink: #0c2622;
+  --ink-soft: #35504a;
+  --red: #922b32;        /* 10% */
+  --red-2: #b44049;
+  --line: rgba(2, 90, 76, .3);
+  --serif: 'Lora', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --bar-h: 46px;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+::selection { background: var(--red); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: fixed; left: 8px; top: -60px; z-index: 200; background: var(--green); color: var(--paper); padding: 8px 14px; text-decoration: none; }
+.skip:focus { top: 8px; }
+
+/* ---------- nhãn & nút ---------- */
+.tag { font: 600 11px/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; }
+.num { font-variant-numeric: tabular-nums lining-nums; }
+.btn {
+  display: inline-flex; align-items: center; gap: .55em; padding: .62em 1.05em; border: 1.5px solid var(--green);
+  background: var(--paper); color: var(--green); font: 600 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; box-shadow: 3px 3px 0 var(--green); transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s, color .18s;
+}
+.btn { border-radius: var(--r-s); }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--green); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--green); }
+.btn--solid { background: var(--green); color: var(--paper); }
+.btn--red { background: var(--red); border-color: var(--red); color: var(--paper); box-shadow: 3px 3px 0 var(--ink); }
+.btn--red:hover { box-shadow: 1px 1px 0 var(--ink); }
+.btn[aria-pressed='true'] { background: var(--green); color: var(--paper); }
+.btn svg { width: 1.2em; height: 1.2em; flex: none; }
+
+/* ---------- thanh điều hướng mỏng ---------- */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 60; height: var(--bar-h); display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(14px, 2.4vw, 28px); background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.bar::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--line); opacity: .6; }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.brand b { font: italic 700 20px/1 var(--serif); color: var(--green); letter-spacing: -.01em; }
+.brand span { font: 600 10px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--red); }
+.nav { display: flex; gap: clamp(12px, 2.4vw, 26px); align-items: center; }
+.nav a { font: 600 11px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); padding: 6px 0; position: relative; }
+.nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+.nav a:hover::after, .nav a[aria-current='page']::after { transform: scaleX(1); }
+.nav a[aria-current='page'] { color: var(--green); }
+
+/* ---------- lớp phủ: hạt giấy + chuyển cảnh ---------- */
+#grain { display: none; } /* hạt giấy nay là nền của các bề mặt giấy (biến --grain), không còn lớp phủ toàn màn hình */
+body, .bar { background-image: var(--grain, none); background-size: 220px 220px; }
+#curtain { position: fixed; inset: 0; z-index: 100; width: 100%; height: 100%; pointer-events: none; }
+html.js:not(.curtain-ready) #curtain { background: var(--green); }
+html.js:not(.curtain-ready) body { visibility: hidden; }
+
+/* tách chữ */
+.sp-m { display: inline-block; overflow: hidden; vertical-align: top; padding: .08em .02em .14em; margin: -.08em -.02em -.14em; }
+.sp-w { display: inline-block; white-space: pre; will-change: transform; }
+.sp-c { display: inline-block; will-change: transform; }
+
+/* toast */
+.toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--ink); color: var(--paper); padding: 10px 16px; font: 500 13px/1.3 var(--sans); max-width: min(92vw, 460px); box-shadow: 4px 4px 0 var(--red); transition: opacity .25s, transform .25s var(--ease); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+}

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3e8d3">
+  <title>Giới thiệu</title>
+  <meta name="description" content="WebGIS tra cứu quy hoạch thửa đất: địa chính, hiện trạng và quy hoạch trên một bản đồ.">
+  <link rel="canonical" href="https://hunxdan.github.io/webgis_thanhphuoc/landing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Địa bạ số · Thạnh Phước">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="Địa bạ số · Thạnh Phước, Vĩnh Long">
+  <meta property="og:description" content="WebGIS tra cứu quy hoạch thửa đất: địa chính, hiện trạng và quy hoạch trên một bản đồ.">
+  <meta property="og:url" content="https://hunxdan.github.io/webgis_thanhphuoc/landing.html">
+  <meta property="og:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bản đồ thửa đất xã Thạnh Phước, Vĩnh Long — Địa bạ số">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Địa bạ số · Thạnh Phước, Vĩnh Long">
+  <meta name="twitter:description" content="WebGIS tra cứu quy hoạch thửa đất: địa chính, hiện trạng và quy hoạch trên một bản đồ.">
+  <meta name="twitter:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/map.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
+  <script src="assets/js/boot.js"></script>
+  <script src="config.js"></script>
+</head>
+<body class="page-landing" data-title="Giới thiệu">
+  <a class="skip" href="#main">Bỏ qua tới nội dung</a>
+  <header class="bar">
+    <a class="brand" href="landing.html" aria-label="Về đầu trang"><b data-cfg="TEN_XA"></b><span data-cfg="TEN_RUT_GON"></span></a>
+    <nav class="nav" aria-label="Điều hướng chính">
+      <a href="landing.html" aria-current="page">Giới thiệu</a>
+      <a href="index.html" data-curtain>Tra cứu →</a>
+    </nav>
+  </header>
+
+  <canvas id="stage" aria-hidden="true"></canvas>
+
+  <main id="main">
+    <div id="zone">
+      <!-- 1. Mở đầu -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero__stick">
+          <p class="tag hero__kicker" id="hero-kicker"></p>
+          <h1 class="hero__title" id="hero-title"><span class="ln" id="t1"></span><span class="ln ln--2" id="t2"></span></h1>
+          <p class="hero__lede" id="hero-lede" data-cfg="MO_TA_NGAN"></p>
+          <div class="hero__cta">
+            <a class="btn btn--red" href="index.html" data-curtain>Vào bản đồ tra cứu <span aria-hidden="true">→</span></a>
+            <a class="btn" href="#manifesto">Khám phá</a>
+          </div>
+          <p class="hero__side tag" id="hero-side" aria-hidden="true"></p>
+          <p class="hero__coords num" id="hero-coords" aria-hidden="true"></p>
+          <div class="hero__scroll tag" aria-hidden="true"><span>Cuộn</span><i></i></div>
+        </div>
+      </section>
+
+      <!-- 2. Tuyên ngôn -->
+      <section class="manifesto" id="manifesto" aria-label="Giới thiệu ngắn">
+        <div class="manifesto__stick">
+          <p class="tag manifesto__k">§ 01 — Một cuốn địa bạ số</p>
+          <p class="manifesto__t" id="manifesto-t"></p>
+        </div>
+      </section>
+
+      <!-- 3. Ba lớp dữ liệu -->
+      <section class="layers" id="layers" aria-labelledby="layers-h">
+        <div class="layers__stick">
+          <div class="layers__txt">
+            <p class="tag">§ 02 — Cấu trúc dữ liệu</p>
+            <h2 id="layers-h">Bốn tầng,<br><em>một thửa đất.</em></h2>
+            <ol class="steps" id="steps">
+              <li class="step" data-i="1">
+                <span class="step__n num">01</span>
+                <div><h3>Hiện trạng</h3><p class="step__src tag">THUA_DAT · mã loại đất</p>
+                  <p>Mỗi thửa mang màu của loại đất đang sử dụng: lúa, thủy sản, đất ở, rừng…</p></div>
+              </li>
+              <li class="step" data-i="2">
+                <span class="step__n num">02</span>
+                <div><h3>Địa chính</h3><p class="step__src tag">THUA_DAT</p>
+                  <p>Ranh giới và thông tin cơ bản của thửa: số tờ, số thửa, diện tích, hiện trạng, địa chỉ.</p></div>
+              </li>
+              <li class="step" data-i="3">
+                <span class="step__n num">03</span>
+                <div><h3>Quy hoạch</h3><p class="step__src tag">QH_Clean_v3 → QH_THUA · QH_CHI_TIET</p>
+                  <p>Dữ liệu quy hoạch đã chuẩn hóa (viền đỏ), tổng hợp theo từng thửa và chi tiết theo loại đất quy hoạch.</p></div>
+              </li>
+              <li class="step" data-i="0">
+                <span class="step__n num">04</span>
+                <div><h3>Ảnh vệ tinh</h3><p class="step__src tag">Satellite</p>
+                  <p>Lớp nền hỗ trợ định vị và đối chiếu không gian.</p></div>
+              </li>
+            </ol>
+          </div>
+          <div class="lbls" aria-hidden="true">
+            <span class="lbl" data-i="3"><i></i>Quy hoạch</span>
+            <span class="lbl" data-i="2"><i></i>Địa chính</span>
+            <span class="lbl" data-i="1"><i></i>Hiện trạng</span>
+            <span class="lbl" data-i="0"><i></i>Ảnh vệ tinh</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 4. Sơ đồ cấu trúc -->
+    <section class="sec tree-sec" id="structure" aria-labelledby="tree-h">
+      <div class="wrap">
+        <p class="tag red">§ 03 — Quan hệ giữa các lớp</p>
+        <h2 class="h2" id="tree-h" data-split>Từ một cổng, hai nhánh dữ liệu.</h2>
+        <div class="tree" id="tree">
+          <svg viewBox="0 0 900 380" role="img" aria-label="Sơ đồ: WebGIS gồm nhánh Địa chính (THUA_DAT) và nhánh Quy hoạch (gồm QH_THUA và QH_CHI_TIET), cùng lớp nền Satellite.">
+            <g class="tr-lines" fill="none">
+              <path d="M170 190 C 230 190, 230 90, 290 90"/>
+              <path d="M170 190 C 230 190, 230 270, 290 270"/>
+              <path d="M170 190 C 200 190, 200 345, 290 345"/>
+              <path d="M450 90 L 520 90"/>
+              <path d="M450 270 L 520 270"/>
+              <path d="M520 270 C 540 270, 540 215, 560 215"/>
+              <path d="M520 270 C 540 270, 540 325, 560 325"/>
+              <path d="M740 215 L 760 215" class="tr-soft"/>
+            </g>
+            <g class="tr-node tr-root"><rect x="30" y="160" width="140" height="60"/><text x="100" y="196" text-anchor="middle">WEBGIS</text></g>
+            <g class="tr-node"><rect x="290" y="62" width="160" height="56"/><text x="370" y="96" text-anchor="middle">ĐỊA CHÍNH</text></g>
+            <g class="tr-node tr-data"><rect x="520" y="66" width="190" height="48"/><text x="615" y="96" text-anchor="middle">THUA_DAT</text></g>
+            <g class="tr-node"><rect x="290" y="242" width="160" height="56"/><text x="370" y="276" text-anchor="middle">QUY HOẠCH</text></g>
+            <g class="tr-node tr-data tr-redb"><rect x="560" y="190" width="180" height="50"/><text x="650" y="220" text-anchor="middle">QH_THUA</text></g>
+            <g class="tr-node tr-data tr-redb"><rect x="560" y="300" width="180" height="50"/><text x="650" y="330" text-anchor="middle">QH_CHI_TIET</text></g>
+            <g class="tr-node tr-sat"><rect x="290" y="320" width="160" height="50"/><text x="370" y="351" text-anchor="middle">SATELLITE</text></g>
+            <text class="tr-note" x="720" y="96">ranh giới · thông tin cơ bản</text>
+            <text class="tr-note" x="750" y="222">tổng hợp / thửa</text>
+            <text class="tr-note" x="750" y="332">chi tiết loại QH</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Về website -->
+    <section class="sec about" id="about" aria-labelledby="about-h">
+      <div class="wrap about__grid">
+        <div class="about__txt">
+          <p class="tag red">§ 04 — Về website</p>
+          <h2 class="h2" id="about-h" data-split>Đọc vùng đất<br><em>bằng mắt.</em></h2>
+          <p class="lead" id="about-p"></p>
+          <p class="about__note" id="about-n"></p>
+          <a class="btn btn--solid" href="index.html" data-curtain>Mở bản đồ tra cứu →</a>
+        </div>
+        <div class="about__fig">
+          <canvas id="sil" aria-label="Sơ đồ ranh giới thửa của xã; kính lúp phóng to và tô màu hiện trạng sử dụng đất" role="img"></canvas>
+          <p class="tag about__cap">Rê chuột để soi từng thửa</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Số liệu -->
+    <section class="sec stats" id="stats" aria-labelledby="stats-h">
+      <div class="wrap">
+        <p class="tag red">§ 05 — Thống kê &amp; số liệu</p>
+        <h2 class="h2" id="stats-h" data-split>Những con số đứng sau bản đồ.</h2>
+        <ul class="stat-grid" id="stat-grid"></ul>
+        <ul class="stat-derived" id="stat-derived" aria-label="Số liệu tính trực tiếp từ dữ liệu"></ul>
+      </div>
+    </section>
+
+    <!-- 7. Chức năng (cuộn ngang) -->
+    <section class="feat" id="feat" aria-labelledby="feat-h">
+      <div class="feat__stick">
+        <div class="feat__head">
+          <p class="tag red">§ 06 — Chức năng</p>
+          <h2 class="h2" id="feat-h" data-split>Mọi thứ cần để tra cứu.</h2>
+        </div>
+        <div class="feat__track" id="feat-track"></div>
+      </div>
+    </section>
+
+    <!-- 8. Thông tin tra cứu -->
+    <section class="sec lookup" id="lookup" aria-labelledby="lk-h">
+      <div class="wrap lookup__grid">
+        <div>
+          <p class="tag red">§ 07 — Thông tin tra cứu</p>
+          <h2 class="h2" id="lk-h" data-split>Hai nhóm thông tin cho mỗi thửa.</h2>
+          <div class="lk-cols">
+            <div><h3 class="tag">Thửa đất</h3><ul class="lk-list">
+              <li>Số tờ</li><li>Số thửa</li><li>Diện tích</li><li>Diện tích pháp lý</li><li>Hiện trạng</li><li>Địa chỉ</li></ul></div>
+            <div><h3 class="tag">Quy hoạch</h3><ul class="lk-list">
+              <li>Có / không quy hoạch</li><li>Mã loại đất</li><li>Tên loại đất quy hoạch</li><li>Diện tích quy hoạch</li></ul>
+              <p class="lk-note">Nếu một thửa có nhiều loại quy hoạch, từng loại và diện tích tương ứng được thể hiện riêng.</p></div>
+          </div>
+        </div>
+        <div class="lookup__card" id="lk-card" aria-label="Ví dụ thẻ thông tin của một thửa đất trong dữ liệu"></div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="sec faq" id="faq" aria-labelledby="faq-h">
+      <div class="wrap faq__grid">
+        <div>
+          <p class="tag red">§ 08 — Hướng dẫn</p>
+          <h2 class="h2" id="faq-h" data-split>Câu hỏi thường gặp.</h2>
+        </div>
+        <div class="faq__list" id="faq-list"></div>
+      </div>
+    </section>
+
+    <!-- 10. Đối tác -->
+    <section class="sec partners" id="partners" aria-labelledby="pt-h">
+      <div class="wrap"><p class="tag red">§ 09 — Đối tác</p><h2 class="sr-only" id="pt-h">Đối tác</h2></div>
+      <div class="marquee" id="marquee" aria-label="Logo đối tác"><div class="marquee__row" id="marquee-row"></div></div>
+    </section>
+
+    <!-- 11. Lời cảm ơn -->
+    <section class="sec thanks" id="thanks" aria-labelledby="th-h">
+      <div class="wrap thanks__grid">
+        <div>
+          <p class="tag red">§ 10 — Lời cảm ơn</p>
+          <h2 class="h2" id="th-h" data-split>Xin chân thành cảm ơn.</h2>
+        </div>
+        <div class="thanks__body" id="thanks-body"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <a class="foot__cta" href="index.html" data-curtain><span>Sẵn sàng tra cứu</span><b>Mở bản đồ <i aria-hidden="true">→</i></b></a>
+    <div class="foot__bar">
+      <p id="foot-team"></p>
+      <p id="foot-copy"></p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <p class="tag" id="loader-tag"></p>
+    <p class="loader__n num" id="loader-n">0</p>
+    <p class="loader__t">đang trải địa bạ ra…</p>
+  </div>
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <canvas id="curtain" aria-hidden="true"></canvas>
+  <script defer src="assets/js/landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+/* map.css — trang tra cứu */
+.page-map { height: 100dvh; overflow: hidden; }
+#map { position: fixed; inset: var(--bar-h) 0 0 0; outline: none; background: var(--paper); box-shadow: inset 0 0 140px rgba(2, 90, 76, .14); }
+#map:focus-visible { outline: 2px solid var(--red); outline-offset: -4px; }
+.map__bg, .map__gl, .map__over { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map__gl { pointer-events: none; }
+.map__over { cursor: crosshair; }
+.map__over.grab { cursor: grabbing; }
+.is-measuring .map__over { cursor: copy; }
+
+/* giấy ghi chú: nền sáng hơn giấy bản đồ, viền lục, bóng cứng */
+.finder, .pop, .deed, .ticket, .tools .tool, .tip {
+  background: #fbf4e4; border: 1.5px solid var(--green); box-shadow: 4px 4px 0 var(--green);
+}
+
+/* ---------- tìm kiếm ---------- */
+.finder { position: fixed; z-index: 45; top: calc(var(--bar-h) + 14px); left: 14px; width: min(560px, calc(100vw - 28px)); }
+.finder__tabs { display: flex; margin: -1.5px -1.5px 0; }
+.finder__tabs button { flex: 0 0 auto; padding: 9px 16px 8px; border: 1.5px solid var(--green); border-bottom: 0; background: var(--paper-2); color: var(--ink-soft); font: 600 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; margin-right: -1.5px; }
+.finder__tabs button[aria-selected='true'] { background: #fbf4e4; color: var(--red); box-shadow: inset 0 3px 0 var(--red); position: relative; z-index: 1; margin-bottom: -1.5px; padding-bottom: 10px; }
+.finder__form { display: flex; align-items: flex-end; gap: 14px; padding: 12px 14px 14px; border-top: 1.5px solid var(--green); }
+.finder__fields { display: flex; align-items: flex-end; gap: 10px; flex: 1; min-width: 0; }
+.fld { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.fld .tag { color: var(--green); font-size: 10px; }
+.fld input { width: 100%; border: 0; border-bottom: 2px solid var(--green); background: transparent; font: 700 26px/1.15 var(--serif); padding: 2px 0 3px; color: var(--ink); border-radius: 0; outline: none; }
+.fld input::placeholder { color: rgba(12, 38, 34, .22); font-weight: 400; font-style: italic; }
+.fld input:focus { border-bottom-color: var(--red); }
+.fld--wide input { font-size: 22px; }
+.fld__sep { font: 700 26px/1 var(--serif); color: var(--red); padding-bottom: 8px; }
+.finder__list { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--green); max-height: 44vh; overflow: auto; }
+.finder__list li { padding: 9px 14px; display: grid; gap: 1px; cursor: pointer; border-bottom: 1px dashed var(--line); }
+.finder__list li:last-child { border-bottom: 0; }
+.finder__list li b { font: 700 16px/1.25 var(--serif); }
+.finder__list li span { font-size: 12px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.finder__list li.on, .finder__list li:hover { background: var(--green); color: var(--paper); }
+.finder__list li.on span, .finder__list li:hover span { color: rgba(243, 232, 211, .8); }
+.finder__chip { margin: 0; padding: 8px 14px; border-top: 1.5px solid var(--green); display: flex; justify-content: space-between; align-items: center; gap: 10px; font: 600 12px/1.3 var(--sans); background: var(--red); color: var(--paper); }
+.finder__chip button { border: 0; background: none; color: inherit; font-size: 22px; line-height: 1; padding: 0 4px; }
+
+/* ---------- công cụ ---------- */
+.tool { width: 42px; height: 42px; display: grid; place-items: center; color: var(--green); padding: 0; transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s, color .18s; }
+.tool svg { width: 20px; height: 20px; }
+.tool:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--green); }
+.tool[aria-pressed='true'] { background: var(--green); color: var(--paper); }
+
+/* công tắc & nhóm chọn (cũ) */
+.seg { display: inline-flex; border: 1.5px solid var(--green); flex: none; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.seg span { display: block; padding: 7px 14px; font: 600 11px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+.seg input:checked + span { background: var(--green); color: var(--paper); }
+.seg input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 2px; }
+.seg label + label { border-left: 1.5px solid var(--green); }
+.sw { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 4px 0; position: relative; }
+.sw input { position: absolute; opacity: 0; }
+.sw i { flex: none; width: 34px; height: 18px; border: 1.5px solid var(--green); position: relative; background: var(--paper-2); transition: background .2s; }
+.sw i::after { content: ''; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; background: var(--green); transition: transform .22s var(--ease), background .2s; }
+.sw input:checked + i { background: var(--green); }
+.sw input:checked + i::after { transform: translateX(16px); background: var(--paper); }
+.sw input:focus-visible + i { outline: 2px solid var(--red); outline-offset: 2px; }
+.sw span { font: 600 13px/1.2 var(--sans); }
+.sw small { display: block; font: 400 11px/1.3 var(--sans); color: var(--ink-soft); }
+.rng { display: grid; gap: 6px; margin-top: 4px; }
+.rng input { width: 100%; accent-color: var(--red); }
+
+/* ---------- thẻ thửa đất ---------- */
+.rail { position: fixed; z-index: 42; top: calc(var(--bar-h) + 172px); left: 14px; width: 392px; max-height: calc(100dvh - var(--bar-h) - 172px - 56px); overflow: auto; display: flex; flex-direction: column; gap: 14px; padding: 0 6px 6px 0; scrollbar-width: thin; pointer-events: none; }
+.rail > * { pointer-events: auto; }
+.deed, .ticket { position: relative; background-image: linear-gradient(var(--line), var(--line)); background-size: 100% 1px; background-repeat: no-repeat; background-position: 0 0; flex: none; }
+.deed:not([hidden]), .ticket:not([hidden]) { animation: deedIn .6s var(--ease) both; }
+@keyframes deedIn { from { opacity: 0; transform: translateX(-34px) rotate(-1.2deg); } to { opacity: 1; transform: none; } }
+.deed::before { content: ''; position: absolute; inset: 5px; border: 1px solid var(--line); pointer-events: none; }
+.deed__head { position: relative; padding: 16px 18px 6px; }
+.deed__head .tag { color: var(--red); margin: 0 0 4px; }
+.deed__head .x { position: absolute; right: 8px; top: 8px; width: 34px; height: 34px; display: grid; place-items: center; border: 0; background: none; color: var(--green); }
+.deed__head .x:hover { color: var(--red); }
+.deed__head .x svg { width: 20px; height: 20px; }
+.deed__title { margin: 0; font: 400 15px/1.1 var(--serif); font-style: italic; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; color: var(--green); }
+.deed__title b { font: 700 46px/1 var(--serif); font-style: normal; color: var(--ink); letter-spacing: -.02em; }
+.ticket__title { margin: 2px 0 0; font: 700 19px/1.25 var(--serif); display: flex; gap: 10px; align-items: flex-start; padding-right: 30px; }
+.ticket__title i { margin-top: 6px; }
+.deed__rows { margin: 0; padding: 6px 18px 4px; }
+.row { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.row:last-child { border-bottom: 0; }
+.row dt { font: 600 10.5px/1.5 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--green); padding-top: 2px; }
+.row dd { margin: 0; font-weight: 500; overflow-wrap: anywhere; }
+.chip { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.chip em { font: 700 10px/1 var(--sans); letter-spacing: .1em; font-style: normal; background: var(--ink); color: var(--paper); padding: 3px 6px; }
+.deed__plan { padding: 8px 18px 14px; border-top: 3px double var(--green); margin-top: 6px; }
+.deed__plan .tag { color: var(--red); margin: 8px 0 6px; }
+.plan__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.donut-wrap { position: relative; width: 156px; height: 156px; flex: none; }
+.donut { width: 100%; height: 100%; }
+.donut__arc { transition: stroke-dasharray 1.1s var(--ease); }
+.donut__c { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.donut__c b { font: 700 30px/1 var(--serif); }
+.donut__c b small { font-size: 15px; margin-left: 1px; }
+.donut__c span { font: 600 9px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
+.stamp { transform: rotate(-9deg); border: 3px double currentColor; padding: 10px 14px 9px; text-align: center; font-family: var(--sans); text-transform: uppercase; letter-spacing: .16em; mix-blend-mode: multiply; animation: stampIn .5s .45s cubic-bezier(.3, 1.6, .5, 1) both; -webkit-mask-image: radial-gradient(circle at 20% 30%, #000 60%, rgba(0, 0, 0, .8) 100%); }
+.stamp span { display: block; font-weight: 700; font-size: 11px; }
+.stamp b { display: block; font: 800 17px/1.1 var(--serif); letter-spacing: .08em; }
+.stamp--yes { color: var(--red); }
+.stamp--no { color: var(--green); }
+@keyframes stampIn { from { opacity: 0; transform: rotate(-9deg) scale(2.1); } to { opacity: .94; transform: rotate(-9deg) scale(1); } }
+.plan__list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; }
+.plan__list li { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px dashed var(--line); }
+.plan__list i { margin-top: 4px; }
+.plan__list b { display: block; font: 700 13.5px/1.3 var(--sans); }
+.plan__list span { font-size: 11.5px; color: var(--ink-soft); }
+.plan__list .r { text-align: right; }
+.muted { color: var(--ink-soft); font-size: 13px; margin: 10px 0 0; }
+.deed__foot { padding: 9px 18px 12px; font-size: 11px; color: var(--ink-soft); border-top: 1px solid var(--line); font-style: italic; }
+
+/* ---------- thước tỉ lệ, trạng thái ---------- */
+.status { position: fixed; z-index: 38; left: 14px; bottom: 12px; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
+.scale { display: flex; align-items: flex-end; gap: 8px; }
+.scale i { display: block; height: 7px; width: 80px; border: 1.5px solid var(--ink); border-top: 0; }
+.scale span, .coords { font: 600 11px/1 var(--sans); color: var(--ink); text-shadow: 0 0 4px var(--paper), 0 0 4px var(--paper); }
+.coords { margin: 0; font-weight: 500; color: var(--ink-soft); }
+.is-sat ~ .status .scale i { border-color: var(--paper); }
+.mapnote { position: fixed; z-index: 38; right: 16px; bottom: 32px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; pointer-events: none; text-align: right; }
+.mapnote p { margin: 0; font: 500 10.5px/1.2 var(--sans); color: var(--ink-soft); text-shadow: 0 0 4px var(--paper), 0 0 4px var(--paper); }
+.mapnote .disclaimer { opacity: .62; font-style: italic; } /* mờ nhẹ, góc phải bản đồ */
+.is-sat ~ .mapnote p { color: var(--paper); text-shadow: 0 0 3px rgba(12, 38, 34, .9), 0 0 3px rgba(12, 38, 34, .9); }
+.tip { position: fixed; z-index: 70; left: 0; top: 0; pointer-events: none; padding: 7px 10px; display: grid; gap: 1px; box-shadow: 3px 3px 0 var(--red); }
+.tip b { font: 700 14px/1.2 var(--serif); }
+.tip span { font-size: 11px; color: var(--ink-soft); }
+
+/* ---------- màn tải ---------- */
+.loader { position: fixed; inset: 0; z-index: 110; display: grid; place-content: center; text-align: center; color: var(--paper); gap: 4px; pointer-events: none; }
+.loader .tag { color: rgba(243, 232, 211, .7); }
+.loader__n { margin: 0; font: 700 clamp(64px, 16vw, 168px)/1 var(--serif); letter-spacing: -.03em; }
+.loader__t { margin: 0; font: italic 400 16px/1.4 var(--serif); color: rgba(243, 232, 211, .8); }
+.loader[hidden] { display: none; }
+.noscript { position: fixed; inset: 40% 10% auto; text-align: center; z-index: 120; font: 600 16px var(--sans); }
+
+/* ---------- di động ---------- */
+@media (max-width: 820px) {
+  .brand span { display: none; }
+  .finder { left: 10px; right: 10px; width: auto; top: calc(var(--bar-h) + 10px); }
+  .fld input { font-size: 22px; }
+    .tool { width: 40px; height: 40px; }
+
+  .rail { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 52dvh; padding: 0; gap: 0; }
+  .rail .deed, .rail .ticket { border-width: 1.5px 0 0; box-shadow: 0 -4px 0 var(--green); max-height: 62dvh; }
+  .deed:not([hidden]), .ticket:not([hidden]) { animation-name: sheetIn; }
+  .deed__title b { font-size: 38px; }
+  .row { grid-template-columns: 96px 1fr; }
+  .status { bottom: 8px; }
+  .mapnote { bottom: 30px; right: 10px; max-width: 58vw; }
+}
+@keyframes sheetIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+
+/* ---------- công cụ bên phải ---------- */
+.tools { position: fixed; z-index: 40; right: 14px; top: calc(var(--bar-h) + 14px); display: flex; flex-direction: column; gap: 8px; }
+.tools__gap { height: 6px; }
+.tool svg { width: 24px; height: 24px; }
+
+/* ---------- bảng nổi (lớp, đo đạc) ---------- */
+.pop { position: fixed; z-index: 41; right: 66px; top: calc(var(--bar-h) + 14px); width: 292px; padding: 14px 16px 16px; max-height: calc(100dvh - var(--bar-h) - 90px); overflow: auto; }
+
+.pop:not([hidden]) { animation: popIn .28s var(--ease) both; }
+@keyframes popIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.pop__title { margin: 0 0 10px; font: 700 18px/1.2 var(--serif); color: var(--ink); }
+.lyr { padding: 10px 0 12px; border-top: 1px dashed var(--line); }
+.lyr__head { display: flex; align-items: center; gap: 10px; }
+.lyr__ic { flex: none; width: 40px; height: 26px; display: grid; place-items: center; color: var(--green); }
+.lyr__ic svg { width: 100%; height: 100%; }
+.lyr[data-k='qh'] .lyr__ic { color: var(--red); }
+.lyr__name { flex: 1; font: 600 14px/1.2 var(--sans); }
+.lyr__op { display: flex; justify-content: space-between; align-items: baseline; margin: 10px 0 4px; font: 500 12px/1 var(--sans); color: var(--ink-soft); }
+.lyr__op output { font-weight: 600; color: var(--ink); }
+.lyr.is-off .lyr__op, .lyr.is-off .rg { opacity: .4; pointer-events: none; }
+/* công tắc vuông */
+.sw2 { flex: none; width: 46px; height: 24px; border: 1.5px solid var(--green); background: var(--paper-2); position: relative; padding: 0; transition: background .2s; }
+.sw2 i { position: absolute; top: 2px; left: 2px; width: 17px; height: 17px; background: var(--green); transition: transform .22s var(--ease), background .2s; }
+.sw2[aria-checked='true'] { background: var(--green); }
+.sw2[aria-checked='true'] i { transform: translateX(22px); background: var(--paper); }
+/* thanh trượt: rãnh vuông có phần tô, núm vuông */
+.rg { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; margin: 0; background: transparent; --v: 100%; cursor: pointer; }
+.rg::-webkit-slider-runnable-track { height: 8px; border: 1.5px solid var(--green); background: linear-gradient(90deg, var(--green) var(--v), var(--paper-2) var(--v)); }
+.rg::-moz-range-track { height: 8px; border: 1.5px solid var(--green); background: var(--paper-2); }
+.rg::-moz-range-progress { height: 8px; background: var(--green); }
+.rg::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 22px; margin-top: -8px; background: var(--red); border: 1.5px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.rg::-moz-range-thumb { width: 14px; height: 20px; border-radius: 0; background: var(--red); border: 1.5px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.rg:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+/* bảng đo */
+.mrows { margin: 0; display: grid; gap: 0; }
+.mrows > div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px dashed var(--line); }
+.mrows dt { font: 600 10.5px/1.5 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
+.mrows dd { margin: 0; font: 600 13px/1.4 var(--sans); text-align: right; white-space: nowrap; }
+.mhint { margin: 8px 0 12px; font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+.mact { display: flex; flex-wrap: wrap; gap: 8px; }
+.mact .btn { flex: 1 1 auto; justify-content: center; }
+.mact .btn:disabled { opacity: .4; pointer-events: none; }
+
+/* ---------- ô gợi ý trượt xuống từ ô nhập ---------- */
+.finder__list li small { font-size: 11px; color: var(--ink-soft); }
+.finder__list.is-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 0; }
+.finder__list.is-grid li { border-bottom: 1px dashed var(--line); border-right: 1px dashed var(--line); text-align: center; padding: 7px 4px; }
+.finder__list.is-grid li b { font-size: 15px; }
+.finder__list.is-grid li span { font-size: 10.5px; }
+
+/* ---------- thẻ thửa: phần cuộn + nút ghim cố định ---------- */
+.rail .deed, .rail .ticket { display: flex; flex-direction: column; max-height: calc(100dvh - var(--bar-h) - 160px); }
+.deed__scroll { overflow: auto; min-height: 0; flex: 1 1 auto; scrollbar-width: thin; }
+.deed__acts { flex: none; display: flex; gap: 10px; padding: 12px 18px 14px; border-top: 1.5px solid var(--green); background: #fbf4e4; position: relative; z-index: 2; }
+.deed__acts .btn { flex: 1; justify-content: center; }
+.btn--sm { padding: .55em .85em; font-size: 11px; box-shadow: 2px 2px 0 var(--green); }
+.btn--sm svg { width: 16px; height: 16px; }
+.rail { top: calc(var(--bar-h) + 126px); max-height: calc(100dvh - var(--bar-h) - 156px); overflow-y: auto; }
+
+@media (max-width: 820px) {
+  .tools { left: 10px; right: 10px; top: calc(var(--bar-h) + 128px); flex-direction: row; justify-content: space-between; gap: 6px; }
+  .tools__gap { display: none; }
+  .pop { right: 10px; left: 10px; width: auto; top: calc(var(--bar-h) + 184px); max-height: 50dvh; }
+}
+
+/* ---------- thẻ thửa gọn: vừa khung nhìn, không cần kéo ---------- */
+.fld input { font-size: 22px; }
+.finder__form { padding: 8px 14px 12px; }
+.deed__head { padding: 12px 16px 4px; }
+.deed__title b { font-size: 32px; }
+.deed__rows { padding: 2px 16px 2px; }
+.row { grid-template-columns: 92px 1fr; gap: 10px; padding: 6px 0; font-size: 13.5px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.row2 dt { font: 600 10.5px/1.5 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+.row2 dd { margin: 0; font-weight: 600; font-size: 15px; }
+.deed__plan { padding: 4px 16px 10px; margin-top: 2px; }
+.deed__plan .tag { margin: 4px 0 2px; }
+.donut-wrap { width: 100px; height: 100px; }
+.donut__c b { font-size: 22px; }
+.donut__c b small { font-size: 12px; }
+.donut__c span { font-size: 8px; }
+.stamp { padding: 7px 11px 6px; }
+.stamp b { font-size: 15px; }
+.plan__list { margin-top: 6px; }
+.plan__list li { padding: 5px 0; gap: 8px; }
+.plan__list b { font-size: 12.5px; }
+.plan__list span { font-size: 11px; }
+.deed__acts { padding: 10px 16px 12px; }
+.deed__more { display: none; }
+.stack { position: fixed; z-index: 75; left: 0; top: 0; width: 210px; background: #fbf4e4; border: 1.5px solid var(--green); box-shadow: 4px 4px 0 var(--red); padding: 8px; display: grid; gap: 4px; max-height: 50dvh; overflow: auto; }
+.stack .tag { color: var(--red); margin: 0 0 2px; font-size: 10px; }
+.stack button { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; border: 1px solid var(--line); background: var(--paper); padding: 6px 8px; text-align: left; }
+.stack button b { font: 700 13px/1.2 var(--serif); }
+.stack button span { font-size: 11px; color: var(--ink-soft); }
+.stack button:hover, .stack button.on { background: var(--green); color: var(--paper); border-color: var(--green); }
+.stack button:hover span, .stack button.on span { color: rgba(243, 232, 211, .85); }
+.lyr--simple .lyr__name small { display: block; font: 400 11px/1.3 var(--sans); color: var(--ink-soft); margin-top: 2px; }
+.lyr--simple .lyr__ic { color: var(--green); }
+@media (max-width: 820px) {
+  .rail .deed.is-peek .deed__plan, .rail .deed.is-peek .row--more { display: none; }
+  .rail .deed.is-peek { max-height: 40dvh; }
+  .deed__more { display: inline-flex; position: absolute; right: 44px; top: 12px; border: 1.5px solid var(--green); background: var(--paper); padding: 4px 8px; font: 600 10px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
+  .deed__title b { font-size: 30px; }
+}
+
+@media (max-width: 820px) {
+  .rail { top: auto; bottom: 0; max-height: 64dvh; }
+  .rail .deed, .rail .ticket { max-height: 64dvh; }
+  .rail .deed.is-peek { max-height: 40dvh; }
+}
+
+/* ---------- vòng 6 ---------- */
+/* ô màu hiện trạng / quy hoạch (màu gốc của dữ liệu, gán qua data-c) */
+[data-c] { display: inline-block; flex: none; width: 15px; height: 15px; border: 1px solid rgba(12, 38, 34, .6); vertical-align: -2px; }
+.ticket__title i { width: 17px; height: 17px; }
+.plan__list i { margin-top: 3px; }
+/* ấn + biểu đồ: chia đều hai nửa, căn giữa */
+.plan__top { display: grid; grid-template-columns: 1fr 1fr; align-items: center; justify-items: center; gap: 6px; padding: 2px 0; }
+.stamp { margin: 0; }
+/* icon lớp to hơn */
+.tool#t-layers svg { width: 36px; height: 36px; }
+/* gợi ý chủ sử dụng: đủ tên, tô phần khớp, thông tin xuống dòng */
+.finder__list li mark { background: rgba(146, 43, 50, .16); color: inherit; padding: 0 1px; box-shadow: inset 0 -2px 0 var(--red); }
+.finder__list li.on mark, .finder__list li:hover mark { background: rgba(243, 232, 211, .22); box-shadow: inset 0 -2px 0 var(--paper); }
+.finder__list li.hint { cursor: default; background: var(--paper-2); }
+.finder__list li.hint:hover { color: inherit; background: var(--paper-2); }
+.finder__list li.hint:hover span { color: var(--ink-soft); }
+/* vừa chọn thửa vừa xem vùng quy hoạch: thẻ thửa gọn lại */
+.rail.is-both .deed .row--more { display: none; }
+.rail.is-both .ticket { order: -1; }
+@media (max-width: 820px) {
+  .rail.is-both .deed .deed__plan { display: none; }
+  .rail { overflow-y: auto; }
+  .donut-wrap { width: 92px; height: 92px; }
+}
+.donut-wrap { width: 108px; height: 108px; }
+.donut__c span { max-width: 56px; line-height: 1.15; justify-self: center; }
+@media (max-width: 820px) { .donut-wrap { width: 96px; height: 96px; } }
+
+.map__anim { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* ---------- điện thoại: tab vừa khung, thanh tìm kiếm thu gọn khi đang xem thông tin ---------- */
+.finder__min { display: none; }
+@media (max-width: 820px) {
+  .finder__tabs { margin-right: 0; }
+  .finder__tabs button { flex: 1 1 0; min-width: 0; padding: 9px 4px 8px; font-size: 10px; letter-spacing: .06em; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .finder__fields .fld input { min-width: 0; width: 100%; }
+  .finder.is-min .finder__tabs, .finder.is-min .finder__form, .finder.is-min .finder__list, .finder.is-min .finder__chip { display: none; }
+  .finder.is-min .finder__min { display: flex; }
+  .finder__min { width: 100%; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border: 0; background: none; color: var(--green); font: 600 12px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; text-align: left; }
+  .finder__min span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+/* hạt giấy trên các bảng giấy; bản đồ (#map) và ảnh vệ tinh không có hạt */
+.finder, .pop, .tools .tool, .tip, .stack, .deed__acts, .deed__acts .btn { background-image: var(--grain, none); background-size: 220px 220px; }
+/* .deed/.ticket đã có sẵn nền đường kẻ 1px ở mép trên (no-repeat): xếp hạt làm lớp thứ hai và lát đều, không ghi đè lớp đường kẻ */
+.deed, .ticket { background-image: linear-gradient(var(--line), var(--line)), var(--grain, none); background-size: 100% 1px, 220px 220px; background-repeat: no-repeat, repeat; background-position: 0 0, 0 0; }
+
+/* ---------- tìm kiếm: tab Ngẫu nhiên ---------- */
+.rand__hint { margin: 0; align-self: center; font: 500 13px/1.45 var(--sans); color: var(--ink-soft); }
+.finder__form .btn:disabled { opacity: .6; pointer-events: none; }
+
+/* ---------- hạt giấy cho các tab tìm kiếm (rule .finder__tabs button dùng shorthand `background` nên phải đặt lại hạt, kể cả tab đang chọn) ---------- */
+.finder__tabs button, .finder__tabs button[aria-selected='true'] { background-image: var(--grain, none); background-size: 220px 220px; }
+
+/* ---------- gợi ý tờ/thửa: bảng gợi ý gọn lại để không che bản đồ (điện thoại) ---------- */
+@media (max-width: 820px) {
+  .finder__list { max-height: 28dvh; }
+  /* lưới tờ/thửa thành dải chip 2 hàng, vuốt ngang (thay vì xổ cả lưới dọc che gần hết bản đồ) */
+  .finder__list.is-grid { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-template-rows: repeat(2, auto); grid-auto-columns: minmax(78px, max-content); max-height: none; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .finder__list.is-grid::-webkit-scrollbar { display: none; }
+  .finder__list.is-grid li { padding: 6px 10px; border-right: 1px dashed var(--line); }
+  .finder__list.is-grid li b { font-size: 14px; white-space: nowrap; }
+  .finder__list:not(.is-grid) { max-height: 24dvh; }
+  .finder__list:not(.is-grid) li { padding: 7px 12px; }
+}

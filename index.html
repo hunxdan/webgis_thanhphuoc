@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https://server.arcgisonline.com; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3e8d3">
+  <title>Tra cứu quy hoạch thửa đất</title>
+  <meta name="description" content="Tra cứu trực tuyến thông tin địa chính, hiện trạng sử dụng đất và quy hoạch của từng thửa đất.">
+  <link rel="canonical" href="https://hunxdan.github.io/webgis_thanhphuoc/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Địa bạ số · Thạnh Phước">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="Tra cứu quy hoạch thửa đất · Thạnh Phước, Vĩnh Long">
+  <meta property="og:description" content="Tra cứu trực tuyến thông tin địa chính, hiện trạng sử dụng đất và quy hoạch của từng thửa đất.">
+  <meta property="og:url" content="https://hunxdan.github.io/webgis_thanhphuoc/">
+  <meta property="og:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bản đồ thửa đất xã Thạnh Phước, Vĩnh Long — Địa bạ số">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tra cứu quy hoạch thửa đất · Thạnh Phước, Vĩnh Long">
+  <meta name="twitter:description" content="Tra cứu trực tuyến thông tin địa chính, hiện trạng sử dụng đất và quy hoạch của từng thửa đất.">
+  <meta name="twitter:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/map.css">
+  <script src="assets/js/boot.js"></script>
+  <script src="config.js"></script>
+</head>
+<body class="page-map">
+  <a class="skip" href="#map">Bỏ qua tới bản đồ</a>
+
+  <header class="bar">
+    <a class="brand" href="landing.html" data-curtain aria-label="Trang giới thiệu">
+      <b data-cfg="TEN_XA"></b><span data-cfg="TEN_RUT_GON"></span>
+    </a>
+    <nav class="nav" aria-label="Điều hướng chính">
+      <a href="index.html" aria-current="page">Tra cứu</a>
+      <a href="landing.html" data-curtain>← Giới thiệu</a>
+    </nav>
+  </header>
+
+  <main id="map" tabindex="0" aria-label="Bản đồ thửa đất. Dùng phím mũi tên để di chuyển, phím cộng và trừ để phóng to, thu nhỏ."></main>
+
+  <!-- Tìm kiếm -->
+  <section class="finder" id="finder" aria-label="Tìm kiếm thửa đất">
+    <button type="button" class="finder__min" id="finder-min" aria-expanded="false" aria-controls="finder-form" hidden><span id="finder-min-text">Tìm kiếm</span><b aria-hidden="true">▾</b></button>
+    <div class="finder__tabs" role="tablist" aria-label="Kiểu tìm kiếm">
+      <button type="button" role="tab" id="tab-thua" aria-selected="true" data-mode="thua">Tờ · Thửa</button>
+      <button type="button" role="tab" id="tab-vn" aria-selected="false" data-mode="vn">Tọa độ VN-2000</button>
+      <button type="button" role="tab" id="tab-ran" aria-selected="false" data-mode="ran">Ngẫu nhiên</button>
+    </div>
+    <form class="finder__form" id="finder-form" autocomplete="off" novalidate>
+      <div class="finder__fields" data-for="thua">
+        <label class="fld"><span class="tag">Số tờ</span><input id="q-to" inputmode="numeric" maxlength="3" placeholder="12" role="combobox" aria-expanded="false" aria-controls="finder-list"></label>
+        <span class="fld__sep" aria-hidden="true">·</span>
+        <label class="fld"><span class="tag">Số thửa</span><input id="q-thua" inputmode="numeric" maxlength="5" placeholder="345" role="combobox" aria-expanded="false" aria-controls="finder-list"></label>
+      </div>
+      <div class="finder__fields" data-for="vn" hidden>
+        <label class="fld"><span class="tag">X · Bắc (m)</span><input id="q-x" inputmode="decimal" maxlength="14" placeholder="1 148 000"></label>
+        <span class="fld__sep" aria-hidden="true">·</span>
+        <label class="fld"><span class="tag">Y · Đông (m)</span><input id="q-y" inputmode="decimal" maxlength="14" placeholder="587 000"></label>
+      </div>
+      <div class="finder__fields" data-for="ran" hidden>
+        <p class="rand__hint">Bản đồ chạy qua các thửa rồi dừng lại ở một thửa ngẫu nhiên.</p>
+      </div>
+      <button class="btn btn--solid" type="submit" id="finder-go">Tìm</button>
+    </form>
+    <ul class="finder__list" id="finder-list" role="listbox" hidden></ul>
+    <p class="finder__chip" id="finder-chip" hidden><span id="finder-chip-text"></span><button type="button" id="finder-chip-x" aria-label="Bỏ lọc">×</button></p>
+  </section>
+
+  <!-- Công cụ (bên phải) -->
+  <div class="tools" id="tools" role="toolbar" aria-label="Công cụ bản đồ">
+    <button type="button" class="tool" id="t-layers" aria-label="Lớp bản đồ" aria-expanded="false" aria-controls="layers" title="Lớp bản đồ"></button>
+    <button type="button" class="tool" id="t-base" aria-label="Nền bản đồ" aria-pressed="false" title="Nền bản đồ: giấy / vệ tinh"></button>
+    <button type="button" class="tool" id="t-gps" aria-label="Vị trí của tôi" title="Vị trí của tôi"></button>
+    <button type="button" class="tool" id="t-home" aria-label="Toàn vùng" title="Xem toàn vùng"></button>
+    <button type="button" class="tool" id="t-measure" aria-label="Đo khoảng cách và diện tích" aria-pressed="false" aria-controls="measure" title="Đo đạc"></button>
+    <span class="tools__gap" aria-hidden="true"></span>
+    <button type="button" class="tool" id="t-in" aria-label="Phóng to" title="Phóng to"></button>
+    <button type="button" class="tool" id="t-out" aria-label="Thu nhỏ" title="Thu nhỏ"></button>
+  </div>
+
+  <!-- Bảng lớp bản đồ -->
+  <section class="pop" id="layers" aria-label="Lớp bản đồ" hidden>
+    <h2 class="pop__title">Lớp bản đồ</h2>
+    <div class="lyr" data-k="thua">
+      <div class="lyr__head"><span class="lyr__ic" id="ic-thua"></span><span class="lyr__name" id="lbl-thua">Thửa đất</span>
+        <button type="button" class="sw2" role="switch" aria-checked="true" aria-labelledby="lbl-thua" id="sw-thua"><i></i></button></div>
+      <div class="lyr__op"><label for="op-thua">Độ trong suốt</label><output class="num" id="v-thua" for="op-thua">100%</output></div>
+      <input class="rg" id="op-thua" type="range" min="0" max="100" step="1" value="100">
+    </div>
+    <div class="lyr lyr--simple" data-k="dc">
+      <div class="lyr__head"><span class="lyr__ic" id="ic-dc"></span><span class="lyr__name" id="lbl-dc">Địa chính <small>ranh giới · số thửa</small></span>
+        <button type="button" class="sw2" role="switch" aria-checked="true" aria-labelledby="lbl-dc" id="sw-dc"><i></i></button></div>
+    </div>
+    <div class="lyr" data-k="qh">
+      <div class="lyr__head"><span class="lyr__ic" id="ic-qh"></span><span class="lyr__name" id="lbl-qh">Quy hoạch</span>
+        <button type="button" class="sw2" role="switch" aria-checked="false" aria-labelledby="lbl-qh" id="sw-qh"><i></i></button></div>
+      <div class="lyr__op"><label for="op-qh">Độ trong suốt</label><output class="num" id="v-qh" for="op-qh">70%</output></div>
+      <input class="rg" id="op-qh" type="range" min="0" max="100" step="1" value="70">
+    </div>
+  </section>
+
+  <!-- Bảng đo đạc -->
+  <section class="pop pop--measure" id="measure" aria-label="Đo đạc" aria-live="polite" hidden>
+    <h2 class="pop__title">Đo đạc</h2>
+    <dl class="mrows">
+      <div><dt>Điểm cuối</dt><dd class="num" id="m-last">—</dd></div>
+      <div><dt>Chiều dài đường đo</dt><dd class="num" id="m-len">0 m</dd></div>
+      <div id="m-arow" hidden><dt>Diện tích</dt><dd class="num" id="m-area">—</dd></div>
+      <div id="m-prow" hidden><dt>Chu vi</dt><dd class="num" id="m-per">—</dd></div>
+    </dl>
+    <p class="mhint" id="m-hint">Bấm lên bản đồ để chấm điểm. Nhấp đúp hoặc nhấn Enter để kết thúc.</p>
+    <div class="mact">
+      <button type="button" class="btn btn--sm" id="m-undo">Lùi một điểm</button>
+      <button type="button" class="btn btn--sm" id="m-done">Hoàn tất</button>
+      <button type="button" class="btn btn--sm" id="m-clear">Xóa nét đo</button>
+    </div>
+  </section>
+
+  <!-- Thẻ thông tin -->
+  <aside class="rail" id="rail" aria-label="Thông tin tra cứu">
+    <article class="ticket" id="ticket" hidden></article>
+    <article class="deed" id="deed" hidden></article>
+  </aside>
+
+  <!-- Trạng thái -->
+  <footer class="status" aria-label="Thước tỉ lệ và toạ độ">
+    <div class="scale"><i id="scale-bar"></i><span id="scale-label" class="num"></span></div>
+    <p class="coords num" id="coords" aria-hidden="true"></p>
+  </footer>
+  <div class="mapnote" id="mapnote">
+    <p class="attrib" id="attrib" hidden></p>
+    <p class="disclaimer">Thông tin mang tính tham khảo</p>
+  </div>
+  <div class="tip" id="tip" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Màn tải -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <p class="tag" id="loader-tag"></p>
+    <p class="loader__n num" id="loader-n">0</p>
+    <p class="loader__t">thửa đất đang được trải ra trên giấy…</p>
+  </div>
+
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <canvas id="curtain" aria-hidden="true"></canvas>
+  <noscript><p class="noscript">Trang tra cứu cần bật JavaScript để hiển thị bản đồ.</p></noscript>
+  <script defer src="assets/js/map-app.js"></script>
+</body>
+</html>
