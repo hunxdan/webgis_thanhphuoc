@@ -6,7 +6,7 @@ const { build } = createRequire(import.meta.url)('esbuild');
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 const R = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-for (const n of ['boot', 'landing', 'map-app']) {
+for (const n of ['boot', 'landing', 'map-app', 'guide']) {
   await build({ entryPoints: [join(R, 'dev/src/js', n + '.js')], outfile: join(R, 'assets/js', n + '.js'), bundle: true, format: 'iife', target: 'es2020', minify: false, loader: { '.svg': 'text' }, legalComments: 'none' });
 }
 console.log('ok');

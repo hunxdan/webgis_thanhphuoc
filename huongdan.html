@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3e8d3">
+  <title>Hướng dẫn sử dụng</title>
+  <meta name="description" content="Hướng dẫn từng bước: cách tìm thửa đất, xem quy hoạch, đo khoảng cách và đọc thông tin trên bản đồ.">
+  <link rel="canonical" href="https://hunxdan.github.io/webgis_thanhphuoc/huongdan.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đất đai số · Thạnh Phước">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="Hướng dẫn sử dụng · Thạnh Phước, Vĩnh Long">
+  <meta property="og:description" content="Hướng dẫn từng bước: cách tìm thửa đất, xem quy hoạch, đo khoảng cách và đọc thông tin trên bản đồ.">
+  <meta property="og:url" content="https://hunxdan.github.io/webgis_thanhphuoc/huongdan.html">
+  <meta property="og:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bản đồ thửa đất xã Thạnh Phước, Vĩnh Long — Đất đai số">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hướng dẫn sử dụng · Thạnh Phước, Vĩnh Long">
+  <meta name="twitter:description" content="Hướng dẫn từng bước: cách tìm thửa đất, xem quy hoạch, đo khoảng cách và đọc thông tin trên bản đồ.">
+  <meta name="twitter:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
+  <link rel="stylesheet" href="assets/css/guide.css">
+  <script src="assets/js/boot.js"></script>
+  <script src="config.js"></script>
+</head>
+<body class="page-landing page-guide" data-title="Hướng dẫn sử dụng">
+  <a class="skip" href="#main">Bỏ qua tới nội dung</a>
+  <header class="bar">
+    <a class="brand" href="landing.html" data-curtain aria-label="Trang giới thiệu"><b data-cfg="TEN_XA"></b><span data-cfg="TEN_RUT_GON"></span></a>
+    <nav class="nav" aria-label="Điều hướng chính">
+      <a href="index.html" data-curtain>Tra cứu</a>
+      <a href="huongdan.html" aria-current="page">Hướng dẫn</a>
+      <a href="landing.html" data-curtain>Giới thiệu</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Mở đầu -->
+    <section class="gk-hero" aria-labelledby="gk-title">
+      <div class="wrap gk-hero__in">
+        <p class="tag red gk-hero__k">Hướng dẫn sử dụng</p>
+        <h1 class="gk-hero__t" id="gk-title">Tìm thửa đất của bạn<br><em>chỉ trong 3 bước.</em></h1>
+        <div class="gk-hero__cta">
+          <a class="btn btn--red gk-btn" href="index.html" data-curtain>Mở bản đồ tra cứu <span aria-hidden="true">→</span></a>
+          <a class="btn gk-btn" href="#gk-quick">Xem 3 bước</a>
+        </div>
+        <nav class="gk-jump" aria-label="Chuyển nhanh tới việc cần làm">
+          <span class="gk-jump__l">Tôi muốn…</span>
+          <a href="#gk-find">Tìm thửa đất</a>
+          <a href="#gk-plan">Xem quy hoạch</a>
+          <a href="#gk-measure">Đo đất</a>
+          <a href="#gk-phone">Dùng điện thoại</a>
+          <a href="#gk-help">Khi gặp khó khăn</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 1. Ba bước -->
+    <section class="sec gk-sec" id="gk-quick" aria-labelledby="gk-quick-h">
+      <div class="wrap">
+        <p class="tag red">§ 01 — Bắt đầu nhanh</p>
+        <h2 class="gk-h2" id="gk-quick-h">Ba bước để xem thông tin thửa đất</h2>
+        <ol class="gk-steps3">
+          <li class="gk-s3">
+            <span class="gk-s3__n num" aria-hidden="true">1</span>
+            <h3>Mở trang Tra cứu</h3>
+            <p>Bấm nút <b>Mở bản đồ tra cứu</b>, hoặc chữ <b>Tra cứu</b> ở góc trên bên phải màn hình. Chờ vài giây để bản đồ hiện ra.</p>
+          </li>
+          <li class="gk-s3">
+            <span class="gk-s3__n num" aria-hidden="true">2</span>
+            <h3>Gõ số tờ và số thửa</h3>
+            <p>Ở khung <b>Tìm kiếm</b> phía trên bên trái, gõ <b>số tờ</b>, rồi <b>số thửa</b>. Bấm nút <b>Tìm</b>.</p>
+            <div class="gk-mini" aria-hidden="true">
+              <div class="gk-mini__f"><small>Số tờ</small><b>12</b></div>
+              <i>·</i>
+              <div class="gk-mini__f"><small>Số thửa</small><b>345</b></div>
+              <span class="gk-mini__b">Tìm</span>
+            </div>
+          </li>
+          <li class="gk-s3">
+            <span class="gk-s3__n num" aria-hidden="true">3</span>
+            <h3>Đọc thẻ thông tin</h3>
+            <p>Bản đồ tự đưa bạn tới đúng thửa. <b>Thẻ thông tin</b> hiện ở bên trái: diện tích, loại đất đang dùng và tình hình quy hoạch.</p>
+          </li>
+        </ol>
+        <aside class="gk-note" aria-label="Mẹo tìm số tờ, số thửa">
+          <b>Số tờ, số thửa ở đâu?</b>
+          <p>Bạn xem trong <b>Giấy chứng nhận quyền sử dụng đất</b> (sổ đỏ, sổ hồng), mục <b>“Thửa đất”</b>: có ghi “Thửa đất số…” và “Tờ bản đồ số…”.</p>
+          <p><b>Chưa có giấy tờ trong tay?</b> Không sao. Bạn có thể phóng to bản đồ và bấm thẳng vào thửa đất (xem mục <a href="#gk-click">Bấm trực tiếp lên bản đồ</a>).</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. Làm quen màn hình -->
+    <section class="sec gk-sec" id="gk-screen" aria-labelledby="gk-screen-h">
+      <div class="wrap">
+        <p class="tag red">§ 02 — Làm quen với màn hình</p>
+        <h2 class="gk-h2" id="gk-screen-h">Trang Tra cứu có những gì?</h2>
+        <div class="gk-screen-grid">
+          <figure class="gk-fig">
+            <div class="gk-screen" role="img" aria-label="Sơ đồ màn hình Tra cứu: 1 là khung tìm kiếm ở góc trên bên trái, 2 là thẻ thông tin bên trái, 3 là các nút công cụ ở bên phải, 4 là thước tỉ lệ ở góc dưới bên trái.">
+              <svg class="gk-screen__map" viewBox="0 0 160 100" preserveAspectRatio="none" aria-hidden="true">
+                <g stroke="#0c2622" stroke-width=".35" stroke-linejoin="round">
+                  <path d="M62 24 L82 20 L90 34 L72 40 Z" fill="#fffc8c"/>
+                  <path d="M82 20 L104 18 L108 32 L90 34 Z" fill="#fff0b4"/>
+                  <path d="M72 40 L90 34 L108 32 L112 48 L80 54 Z" fill="#aaffff"/>
+                  <path d="M56 40 L72 40 L80 54 L60 62 Z" fill="#ffd2a0"/>
+                  <path d="M60 62 L80 54 L112 48 L118 66 L84 76 L64 74 Z" fill="#ffd0ff"/>
+                  <path d="M104 18 L124 24 L126 44 L108 32 Z" fill="#b4ffb4"/>
+                  <path d="M108 32 L126 44 L112 48 Z" fill="#fffc96"/>
+                  <path d="M118 66 L112 48 L126 44 L134 60 Z" fill="#cffff8"/>
+                </g>
+                <path d="M72 40 L90 34 L108 32 L112 48 L80 54 Z" fill="none" stroke="#922b32" stroke-width="1" stroke-dasharray="2.4 1.6"/>
+              </svg>
+              <div class="gk-screen__bar"><b>Thạnh Phước</b><span>Tra cứu · Hướng dẫn · Giới thiệu</span></div>
+              <div class="gk-screen__find">
+                <div class="gk-screen__tabs"><i class="on">Tờ · Thửa</i><i>Tọa độ</i><i>Ngẫu nhiên</i></div>
+                <div class="gk-screen__fields"><span>Số tờ <b>12</b></span><span>Số thửa <b>345</b></span><em>Tìm</em></div>
+              </div>
+              <div class="gk-screen__card">
+                <b>Tờ 12 · Thửa 345</b>
+                <span>Diện tích</span><span>Hiện trạng</span><span>Địa chỉ</span>
+                <em>Quy hoạch</em>
+              </div>
+              <div class="gk-screen__tools" id="gk-mock-tools" aria-hidden="true"></div>
+              <div class="gk-screen__scale"><i></i>2 km</div>
+              <span class="gk-pin gk-pin--1" aria-hidden="true">1</span>
+              <span class="gk-pin gk-pin--2" aria-hidden="true">2</span>
+              <span class="gk-pin gk-pin--3" aria-hidden="true">3</span>
+              <span class="gk-pin gk-pin--4" aria-hidden="true">4</span>
+            </div>
+            <figcaption class="tag">Sơ đồ minh họa, không phải ảnh chụp thật</figcaption>
+          </figure>
+          <ol class="gk-legend">
+            <li><span class="gk-legend__n num">1</span><div><h3>Khung tìm kiếm</h3><p>Nơi gõ số tờ, số thửa. Có thêm hai cách tìm khác: theo <b>tọa độ</b> hoặc <b>ngẫu nhiên</b>.</p></div></li>
+            <li><span class="gk-legend__n num">2</span><div><h3>Thẻ thông tin</h3><p>Hiện ra sau khi bạn tìm hoặc bấm vào một thửa. Có nút <b>×</b> để đóng lại.</p></div></li>
+            <li><span class="gk-legend__n num">3</span><div><h3>Các nút công cụ</h3><p>Dãy nút vuông ở mép phải. Xem bảng bên dưới để biết từng nút làm gì.</p></div></li>
+            <li><span class="gk-legend__n num">4</span><div><h3>Thước tỉ lệ</h3><p>Cho biết đoạn ngắn trên bản đồ tương ứng bao nhiêu mét ngoài thực tế.</p></div></li>
+          </ol>
+        </div>
+
+        <h3 class="gk-h3">Các nút ở bên phải màn hình</h3>
+        <ul class="gk-tools" id="gk-tools" aria-label="Danh sách nút công cụ"></ul>
+      </div>
+    </section>
+
+    <!-- 3. Từng việc -->
+    <section class="sec gk-sec" id="gk-tasks" aria-labelledby="gk-tasks-h">
+      <div class="wrap">
+        <p class="tag red">§ 03 — Hướng dẫn từng việc</p>
+        <h2 class="gk-h2" id="gk-tasks-h">Bạn muốn làm gì?</h2>
+        <div class="gk-cards">
+
+          <article class="gk-card" id="gk-find" aria-labelledby="t1">
+            <h3 id="t1"><span class="num">A</span>Tìm thửa theo số tờ, số thửa</h3>
+            <ol>
+              <li>Ở khung <b>Tìm kiếm</b>, chọn thẻ <b>Tờ · Thửa</b> (thường đã được chọn sẵn).</li>
+              <li>Bấm vào ô <b>Số tờ</b>. Một bảng số tờ hiện ra, bạn bấm vào số tờ của mình, hoặc tự gõ số.</li>
+              <li>Bấm sang ô <b>Số thửa</b>, gõ số thửa hoặc chọn trong bảng gợi ý.</li>
+              <li>Bấm nút <b>Tìm</b>. Bản đồ sẽ tự đưa tới thửa đất.</li>
+            </ol>
+            <p class="gk-tip"><b>Mẹo:</b> chỉ gõ chữ số, không gõ chữ “tờ” hay “thửa”.</p>
+          </article>
+
+          <article class="gk-card" id="gk-click" aria-labelledby="t2">
+            <h3 id="t2"><span class="num">B</span>Bấm trực tiếp lên bản đồ</h3>
+            <ol>
+              <li>Phóng to bản đồ bằng nút <b>+</b> (hoặc lăn con lăn chuột, hoặc chụm hai ngón tay trên điện thoại) cho tới khi thấy rõ ranh giới và số thửa.</li>
+              <li>Bấm vào thửa đất bạn muốn xem. Viền thửa sẽ chuyển động và thẻ thông tin hiện ra.</li>
+              <li>Nếu nhiều thửa nằm chồng lên nhau, một hộp chọn nhanh sẽ hiện ra. Bạn bấm vào đúng thửa cần xem.</li>
+            </ol>
+            <p class="gk-tip"><b>Mẹo:</b> kéo bản đồ bằng cách giữ chuột (hoặc vuốt ngón tay) rồi di chuyển.</p>
+          </article>
+
+          <article class="gk-card" id="gk-plan" aria-labelledby="t3">
+            <h3 id="t3"><span class="num">C</span>Xem thửa đất có quy hoạch không</h3>
+            <ol>
+              <li>Tìm hoặc bấm vào thửa đất như hướng dẫn ở trên.</li>
+              <li>Nhìn xuống phần <b>Quy hoạch</b> trong thẻ thông tin. Dấu đóng ghi <b>“Có quy hoạch”</b> hoặc <b>“Không quy hoạch”</b>.</li>
+              <li>Muốn xem vùng quy hoạch trên bản đồ: bấm nút <b>Lớp bản đồ</b> ở bên phải, bật công tắc <b>Quy hoạch</b>, rồi bấm vào vùng đó để xem tên và mã loại đất.</li>
+            </ol>
+            <p class="gk-tip"><b>Mẹo:</b> kéo thanh <b>Độ trong suốt</b> để nhìn xuyên lớp quy hoạch xuống thửa đất bên dưới.</p>
+          </article>
+
+          <article class="gk-card" id="gk-sat" aria-labelledby="t4">
+            <h3 id="t4"><span class="num">D</span>Xem ảnh vệ tinh</h3>
+            <ol>
+              <li>Bấm nút <b>Nền bản đồ</b> ở bên phải để đổi qua lại giữa nền <b>Giấy</b> và <b>Vệ tinh</b>.</li>
+              <li>Ảnh vệ tinh giúp bạn nhận ra nhà cửa, ao, vườn, đường đi ngoài thực tế.</li>
+            </ol>
+          </article>
+
+          <article class="gk-card" id="gk-measure" aria-labelledby="t5">
+            <h3 id="t5"><span class="num">E</span>Đo khoảng cách, đo diện tích</h3>
+            <ol>
+              <li>Bấm nút <b>Đo đạc</b> (hình cây thước) ở bên phải.</li>
+              <li>Bấm lần lượt lên bản đồ để chấm các điểm. Hai điểm cho biết <b>chiều dài</b>. Từ ba điểm trở lên sẽ hiện thêm <b>diện tích</b> và <b>chu vi</b>.</li>
+              <li>Nhấp đúp (hoặc bấm <b>Hoàn tất</b>) để kết thúc.</li>
+              <li>Chấm nhầm thì bấm <b>Lùi một điểm</b>. Muốn đo lại thì bấm <b>Xóa nét đo</b>.</li>
+            </ol>
+          </article>
+
+          <article class="gk-card" id="gk-gps" aria-labelledby="t6">
+            <h3 id="t6"><span class="num">F</span>Xem vị trí của tôi</h3>
+            <ol>
+              <li>Bấm nút <b>Vị trí của tôi</b> (hình tâm ngắm) ở bên phải.</li>
+              <li>Khi trình duyệt hỏi quyền truy cập vị trí, bấm <b>Cho phép</b>.</li>
+              <li>Bản đồ sẽ chỉ chỗ bạn đang đứng. Rất tiện khi bạn đang ở ngay trên thửa đất.</li>
+            </ol>
+            <p class="gk-tip"><b>Yên tâm:</b> vị trí chỉ xử lý trên máy của bạn, không gửi đi đâu.</p>
+          </article>
+
+          <article class="gk-card" id="gk-share" aria-labelledby="t7">
+            <h3 id="t7"><span class="num">G</span>Sao chép thông tin, chỉ đường</h3>
+            <ol>
+              <li>Mở thẻ thông tin của một thửa đất.</li>
+              <li>Ở đáy thẻ có hai nút: <b>Sao chép</b> (để dán gửi cho người khác qua tin nhắn) và <b>Chỉ đường</b> (mở Google Maps dẫn tới thửa đất).</li>
+            </ol>
+          </article>
+
+          <article class="gk-card" id="gk-other" aria-labelledby="t8">
+            <h3 id="t8"><span class="num">H</span>Hai cách tìm khác</h3>
+            <ol>
+              <li><b>Tọa độ VN-2000:</b> chọn thẻ <b>Tọa độ VN-2000</b>, nhập <b>X (Bắc)</b> và <b>Y (Đông)</b> tính bằng mét. Dành cho người đã có số liệu đo đạc.</li>
+              <li><b>Ngẫu nhiên:</b> chọn thẻ <b>Ngẫu nhiên</b> rồi bấm <b>Tìm</b>. Bản đồ chạy qua nhiều thửa rồi dừng ở một thửa bất kỳ. Dùng để làm quen cho vui.</li>
+            </ol>
+          </article>
+        </div>
+
+        <article class="gk-phone" id="gk-phone" aria-labelledby="gk-phone-h">
+          <div>
+            <p class="tag red">Dùng trên điện thoại</p>
+            <h3 id="gk-phone-h">Ba động tác là đủ</h3>
+          </div>
+          <ul class="gk-gest">
+            <li><span class="gk-gest__i" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="20" r="3.5"/><path d="M24 40c-5 0-8-3-9-6l-3-8c-.5-1.5 1-2.6 2.2-1.6L17 27V14.5a2 2 0 0 1 4 0V22M21 21v-2.5a2 2 0 0 1 4 0V22m0-1.5a2 2 0 0 1 4 0V25m0-3.5a2 2 0 0 1 4 0V32c0 4-3 8-9 8z"/></svg></span><div><b>Chạm</b><p>Chạm một lần vào thửa đất để xem thông tin.</p></div></li>
+            <li><span class="gk-gest__i" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24h28M10 24l6-6M10 24l6 6M38 24l-6-6M38 24l-6 6"/></svg></span><div><b>Vuốt</b><p>Đặt một ngón tay lên bản đồ và kéo để di chuyển.</p></div></li>
+            <li><span class="gk-gest__i" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36 21 27M36 12 27 21M12 36h7M12 36v-7M36 12h-7M36 12v7"/></svg></span><div><b>Chụm / banh hai ngón</b><p>Banh hai ngón ra để phóng to, chụm lại để thu nhỏ.</p></div></li>
+          </ul>
+          <p class="gk-phone__n">Khi thẻ thông tin che mất bản đồ, bấm nút <b>Thu gọn</b> trên thẻ để nhìn rõ bản đồ hơn.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Đọc thẻ thông tin -->
+    <section class="sec gk-sec" id="gk-read" aria-labelledby="gk-read-h">
+      <div class="wrap gk-read">
+        <div class="gk-read__head">
+          <p class="tag red">§ 04 — Đọc thẻ thông tin</p>
+          <h2 class="gk-h2" id="gk-read-h">Mỗi dòng trong thẻ có nghĩa là gì?</h2>
+          <div class="gk-stamps" aria-label="Hai dấu quy hoạch trong thẻ">
+            <div class="gk-stamp gk-stamp--yes"><span>Có</span><b>quy hoạch</b></div>
+            <div class="gk-stamp gk-stamp--no"><span>Không</span><b>quy hoạch</b></div>
+          </div>
+        </div>
+        <dl class="gk-dl">
+          <div><dt>Tờ · Thửa</dt><dd>Số tờ bản đồ và số thửa của mảnh đất, giống như số nhà của thửa đất.</dd></div>
+          <div><dt>Diện tích</dt><dd>Diện tích của thửa đất, tính bằng mét vuông (m²).</dd></div>
+          <div><dt>Diện tích pháp lý</dt><dd>Diện tích ghi trong hồ sơ pháp lý của thửa đất. Con số này có thể khác chút ít so với diện tích ở trên.</dd></div>
+          <div><dt>Hiện trạng</dt><dd>Loại đất đang được sử dụng (đất lúa, đất ở, đất trồng cây lâu năm…), kèm ký hiệu ngắn như <b>LUC</b>, <b>ONT</b>, <b>CLN</b>. Ô màu nhỏ là màu của loại đất đó trên bản đồ.</dd></div>
+          <div><dt>Địa chỉ</dt><dd>Vị trí của thửa đất theo hồ sơ.</dd></div>
+          <div><dt>Quy hoạch</dt><dd>Cho biết thửa đất <b>có hay không</b> nằm trong quy hoạch giai đoạn đã được phê duyệt. Vòng tròn cho thấy <b>phần trăm</b> thửa đất nằm trong quy hoạch. Danh sách bên dưới ghi từng loại đất quy hoạch, diện tích và tỉ lệ của loại đó.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 5. Khó khăn -->
+    <section class="sec gk-sec" id="gk-help" aria-labelledby="gk-help-h">
+      <div class="wrap gk-helpgrid">
+        <div>
+          <p class="tag red">§ 05 — Khi gặp khó khăn</p>
+          <h2 class="gk-h2" id="gk-help-h">Gặp vướng mắc thì thử cách này.</h2>
+          <a class="btn gk-btn" href="landing.html#faq" data-curtain>Xem câu hỏi thường gặp →</a>
+        </div>
+        <ul class="gk-trouble">
+          <li><h3>Gõ số rồi mà không thấy kết quả</h3><p>Kiểm tra lại số tờ, số thửa và chỉ gõ chữ số. Nếu vẫn không ra, hãy phóng to bản đồ và bấm trực tiếp lên thửa đất.</p></li>
+          <li><h3>Bản đồ chưa hiện hoặc chạy chậm</h3><p>Lần đầu mở, trang cần tải dữ liệu của hàng chục nghìn thửa nên có thể mất vài giây. Mạng yếu thì lâu hơn. Nếu quá lâu, hãy tải lại trang.</p></li>
+          <li><h3>Bị lạc, không biết đang ở đâu trên bản đồ</h3><p>Bấm nút <b>Toàn vùng</b> ở bên phải để quay về toàn cảnh xã, rồi bắt đầu lại.</p></li>
+          <li><h3>Thẻ thông tin che mất bản đồ</h3><p>Bấm dấu <b>×</b> trên thẻ để đóng lại, hoặc nút <b>Thu gọn</b> nếu đang dùng điện thoại.</p></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <a class="foot__cta" href="index.html" data-curtain><span>Đã sẵn sàng</span><b>Mở bản đồ <i aria-hidden="true">→</i></b></a>
+    <div class="foot__bar">
+      <p id="foot-team"></p>
+      <p id="foot-copy"></p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <canvas id="curtain" aria-hidden="true"></canvas>
+  <noscript><p class="noscript">Một số hình minh họa cần bật JavaScript. Nội dung hướng dẫn vẫn đọc được bình thường.</p></noscript>
+  <script defer src="assets/js/guide.js"></script>
+</body>
+</html>

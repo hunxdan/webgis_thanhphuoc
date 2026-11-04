@@ -4,7 +4,7 @@ import { CFG, h, clamp, fmt0, fmt1, fmt2, fmtArea, posInt, store, loadPack, load
 import Motion from './motion.js';
 import { initChrome, icon } from './common.js';
 import { MapView } from './mapview.js';
-import { deedNodes, planItems, paintSwatches } from './deed.js';
+import { deedNodes, planItems, paintSwatches, approvedLine } from './deed.js';
 import { oldIcon } from './icons.js';
 import { vnToWgs } from './vn2000.js';
 
@@ -132,7 +132,7 @@ function start(D) {
       h('header', { class: 'deed__head' }, h('p', { class: 'tag' }, 'Vùng quy hoạch'),
         h('button', { type: 'button', class: 'x', 'aria-label': 'Đóng', onclick: () => { hideTicket(); updateAvoid(); } }, icon('close')),
         h('h2', { class: 'ticket__title' }, h('i', { 'data-c': colQH(ma) }), ten)),
-      h('div', { class: 'deed__scroll' }, h('dl', { class: 'deed__rows' }, h('div', { class: 'row' }, h('dt', null, 'Mã loại đất'), h('dd', null, h('span', { class: 'chip' }, h('em', null, ma)))),
+      h('div', { class: 'deed__scroll' }, approvedLine(CFG.KY_QUY_HOACH, 'plan__ok--pad'), h('dl', { class: 'deed__rows' }, h('div', { class: 'row' }, h('dt', null, 'Mã loại đất'), h('dd', null, h('span', { class: 'chip' }, h('em', null, ma)))),
         h('div', { class: 'row' }, h('dt', null, 'Diện tích quy hoạch'), h('dd', { class: 'num' }, qh.dtqh && qh.dtqh[z] > 0 ? fmtArea(qh.dtqh[z]) : '—')),
         h('div', { class: 'row' }, h('dt', null, 'Thông tin thêm'), h('dd', null, tt || '—')))));
     paintSwatches(el); el.hidden = false; updateAvoid();

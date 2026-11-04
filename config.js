@@ -5,7 +5,7 @@
 window.WEBGIS_CONFIG = Object.freeze({
   /* ----- Thông tin dự án ----- */
   TEN_DU_AN: 'WebGIS tra cứu quy hoạch thửa đất',
-  TEN_RUT_GON: 'Địa bạ số',
+  TEN_RUT_GON: 'Đất đai số',
   TEN_XA: 'Thạnh Phước',
   TEN_TINH: 'Vĩnh Long',
   DIA_BAN: 'xã Thạnh Phước, tỉnh Vĩnh Long',

@@ -11,18 +11,18 @@
   <meta name="description" content="WebGIS tra cứu quy hoạch thửa đất: địa chính, hiện trạng và quy hoạch trên một bản đồ.">
   <link rel="canonical" href="https://hunxdan.github.io/webgis_thanhphuoc/landing.html">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Địa bạ số · Thạnh Phước">
+  <meta property="og:site_name" content="Đất đai số · Thạnh Phước">
   <meta property="og:locale" content="vi_VN">
-  <meta property="og:title" content="Địa bạ số · Thạnh Phước, Vĩnh Long">
+  <meta property="og:title" content="Đất đai số · Thạnh Phước, Vĩnh Long">
   <meta property="og:description" content="WebGIS tra cứu quy hoạch thửa đất: địa chính, hiện trạng và quy hoạch trên một bản đồ.">
   <meta property="og:url" content="https://hunxdan.github.io/webgis_thanhphuoc/landing.html">
   <meta property="og:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Bản đồ thửa đất xã Thạnh Phước, Vĩnh Long — Địa bạ số">
+  <meta property="og:image:alt" content="Bản đồ thửa đất xã Thạnh Phước, Vĩnh Long — Đất đai số">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Địa bạ số · Thạnh Phước, Vĩnh Long">
+  <meta name="twitter:title" content="Đất đai số · Thạnh Phước, Vĩnh Long">
   <meta name="twitter:description" content="WebGIS tra cứu quy hoạch thửa đất: địa chính, hiện trạng và quy hoạch trên một bản đồ.">
   <meta name="twitter:image" content="https://hunxdan.github.io/webgis_thanhphuoc/assets/img/og-image.png">
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
@@ -38,8 +38,9 @@
   <header class="bar">
     <a class="brand" href="landing.html" aria-label="Về đầu trang"><b data-cfg="TEN_XA"></b><span data-cfg="TEN_RUT_GON"></span></a>
     <nav class="nav" aria-label="Điều hướng chính">
+      <a href="index.html" data-curtain>Tra cứu</a>
+      <a href="huongdan.html" data-curtain>Hướng dẫn</a>
       <a href="landing.html" aria-current="page">Giới thiệu</a>
-      <a href="index.html" data-curtain>Tra cứu →</a>
     </nav>
   </header>
 
@@ -66,7 +67,7 @@
       <!-- 2. Tuyên ngôn -->
       <section class="manifesto" id="manifesto" aria-label="Giới thiệu ngắn">
         <div class="manifesto__stick">
-          <p class="tag manifesto__k">§ 01 — Một cuốn địa bạ số</p>
+          <p class="tag manifesto__k">§ 01 — Một bộ hồ sơ đất đai số</p>
           <p class="manifesto__t" id="manifesto-t"></p>
         </div>
       </section>
@@ -154,7 +155,6 @@
         </div>
         <div class="about__fig">
           <canvas id="sil" aria-label="Sơ đồ ranh giới thửa của xã; kính lúp phóng to và tô màu hiện trạng sử dụng đất" role="img"></canvas>
-          <p class="tag about__cap">Rê chuột để soi từng thửa</p>
         </div>
       </div>
     </section>
@@ -239,7 +239,7 @@
   <div class="loader" id="loader" role="status" aria-live="polite">
     <p class="tag" id="loader-tag"></p>
     <p class="loader__n num" id="loader-n">0</p>
-    <p class="loader__t">đang trải địa bạ ra…</p>
+    <p class="loader__t">đang trải bản đồ ra…</p>
   </div>
   <canvas id="grain" aria-hidden="true"></canvas>
   <canvas id="curtain" aria-hidden="true"></canvas>

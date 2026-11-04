@@ -109,6 +109,11 @@
 .plan__list span { font-size: 11.5px; color: var(--ink-soft); }
 .plan__list .r { text-align: right; }
 .muted { color: var(--ink-soft); font-size: 13px; margin: 10px 0 0; }
+/* dòng xác nhận quy hoạch đã được phê duyệt */
+.plan__ok { display: flex; align-items: center; gap: 8px; margin: 2px 0 8px; font: 600 12.5px/1.35 var(--sans); color: var(--green); }
+.plan__ok i { flex: none; width: 18px; height: 18px; display: grid; place-items: center; background: var(--green); color: var(--paper); }
+.plan__ok i svg { width: 12px; height: 12px; stroke-width: 2.6; }
+.plan__ok--pad { margin: 10px 16px 2px; }
 .deed__foot { padding: 9px 18px 12px; font-size: 11px; color: var(--ink-soft); border-top: 1px solid var(--line); font-style: italic; }
 
 /* ---------- thước tỉ lệ, trạng thái ---------- */

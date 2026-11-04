@@ -23,6 +23,11 @@ export function donut(items, tyle) {
   return h('div', { class: 'donut-wrap' }, svg, h('div', { class: 'donut__c' }, h('b', { class: 'num' }, `${fmt1(tyle ?? 0)}`, h('small', null, '%')), h('span', null, 'trong quy hoạch')));
 }
 
+/** Dòng xác nhận quy hoạch đã được phê duyệt (dùng cho thẻ thửa đất và thẻ vùng quy hoạch). */
+export function approvedLine(kyQH, cls = '') {
+  return h('p', { class: `plan__ok${cls ? ` ${cls}` : ''}` }, h('i', { 'aria-hidden': 'true' }, icon('check')), h('span', null, `Đã được phê duyệt quy hoạch giai đoạn ${String(kyQH).replace(/ – /g, '\u00a0–\u00a0')}`));
+}
+
 /**
  * r: {to,thua,dt,dtpl,ma,ten,dc,tyle,cqh} — mọi giá trị lấy nguyên từ dữ liệu
  * items: mảng {ma,ten,dt,tyle} (từ QH_CHI_TIET) | null (đang tải)
@@ -41,7 +46,8 @@ export function deedNodes(r, items, { kyQH, onClose, titleId = 'deed-title' }) {
       row('Hiện trạng', h('span', { class: 'chip' }, h('i', { 'data-c': colTD(r.ma) }), r.ten || '—', r.ma ? h('em', null, r.ma) : null)),
       h('div', { class: 'row row--more' }, h('dt', null, 'Địa chỉ'), h('dd', null, r.dc || '—'))),
     h('section', { class: 'deed__plan', 'aria-labelledby': `${titleId}-p` },
-      h('h3', { class: 'tag', id: `${titleId}-p` }, `Quy hoạch ${kyQH}`),
+      h('h3', { class: 'tag', id: `${titleId}-p` }, 'Quy hoạch'),
+      approvedLine(kyQH),
       h('div', { class: 'plan__top' },
         donut(items || [], r.tyle),
         h('div', { class: `stamp ${r.cqh ? 'stamp--yes' : 'stamp--no'}`, 'aria-label': r.cqh ? 'Có quy hoạch' : 'Không quy hoạch' }, h('span', null, r.cqh ? 'Có' : 'Không'), h('b', null, 'quy hoạch'))),

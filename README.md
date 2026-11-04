@@ -1,4 +1,4 @@
-# Địa bạ số — WebGIS tra cứu thửa đất và quy hoạch, xã Thạnh Phước (Vĩnh Long)
+# Đất đai số — WebGIS tra cứu thửa đất và quy hoạch, xã Thạnh Phước (Vĩnh Long)
 
 Trang web tra cứu thông tin địa chính, hiện trạng sử dụng đất và quy hoạch 2021 – 2030 của **17.820 thửa đất, 100 tờ bản đồ** xã Thạnh Phước, tỉnh Vĩnh Long, hiển thị trên một bản đồ tương tác.
 
@@ -7,6 +7,7 @@ Trang web tra cứu thông tin địa chính, hiện trạng sử dụng đất 
 | Trang | Địa chỉ |
 |---|---|
 | Tra cứu (bản đồ) | https://hunxdan.github.io/webgis_thanhphuoc/ |
+| Hướng dẫn sử dụng | https://hunxdan.github.io/webgis_thanhphuoc/huongdan.html |
 | Giới thiệu | https://hunxdan.github.io/webgis_thanhphuoc/landing.html |
 
 > Thông tin trên trang chỉ mang tính tham khảo, không có giá trị pháp lý.
@@ -25,6 +26,9 @@ Trang web tra cứu thông tin địa chính, hiện trạng sử dụng đất 
 - Điểm có nhiều thửa chồng nhau sẽ hiện hộp chọn nhanh.
 - Công cụ đo khoảng cách và diện tích, định vị GPS (chỉ khi bấm), sao chép thông tin, chỉ đường qua Google Maps.
 - Dùng được trên điện thoại.
+- Thẻ thông tin và thẻ vùng quy hoạch ghi rõ quy hoạch giai đoạn 2021 – 2030 đã được phê duyệt.
+
+**Hướng dẫn sử dụng** (`huongdan.html`): trang hướng dẫn chung, chữ lớn dễ đọc, từng bước kèm sơ đồ màn hình, giải thích các nút, cách đọc thẻ thông tin và cách xử lý khi gặp khó khăn.
 
 ## Dữ liệu
 
@@ -39,7 +43,7 @@ Trang web tĩnh (HTML, CSS, JavaScript), **không dùng thư viện bên thứ b
 
 ## Chạy trên máy
 
-Mở trực tiếp `index.html` hoặc `landing.html` bằng trình duyệt (không cần server). Khi mở bằng `file://`, dữ liệu được nạp từ `data/offline.js`.
+Mở trực tiếp `index.html`, `huongdan.html` hoặc `landing.html` bằng trình duyệt (không cần server). Khi mở bằng `file://`, dữ liệu được nạp từ `data/offline.js`.
 
 Hoặc chạy bằng server cục bộ:
 
@@ -51,6 +55,7 @@ node dev/tools/serve.mjs
 
 ```
 index.html, landing.html   trang tra cứu và trang giới thiệu
+huongdan.html              trang hướng dẫn sử dụng
 config.js                  thông tin dự án: tên, mô tả, thống kê, FAQ, lời cảm ơn, màu loại đất
 assets/                    CSS, JS đã đóng gói, phông chữ, hình ảnh
 data/                      dữ liệu đã dựng (parcels, qh, ct, attrs, offline.js)

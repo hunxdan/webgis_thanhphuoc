@@ -63,7 +63,7 @@ function buildContent(D) {
 
   // tuyên ngôn
   const m = $('manifesto-t');
-  m.replaceChildren('Mỗi thửa đất là một dòng trong cuốn ', h('em', null, 'địa bạ'), `. Ở đây, ${fmt0(CFG.THONG_KE[0].so)} thửa được số hóa và chồng lớp cùng quy hoạch ${CFG.KY_QUY_HOACH}, để bạn đọc vùng đất bằng mắt.`);
+  m.replaceChildren('Mỗi thửa đất là một dòng trong ', h('em', null, 'hồ sơ đất đai số'), `. Ở đây, ${fmt0(CFG.THONG_KE[0].so)} thửa được số hóa và chồng lớp cùng quy hoạch ${CFG.KY_QUY_HOACH}, để bạn đọc vùng đất bằng mắt.`);
 
   $('about-p').textContent = CFG.GIOI_THIEU;
   $('about-n').textContent = `Hệ tọa độ ${CFG.HE_TOA_DO}. Phục vụ nghiên cứu học thuật.`;
@@ -264,7 +264,7 @@ function setupTree() {
   Motion.enter(tree, () => tl.play(), { margin: '0px 0px -25% 0px' });
 }
 
-/* ---------- kính lúp địa bạ (mục 04) ---------- */
+/* ---------- kính lúp bản đồ (mục 04) ---------- */
 function setupLens(D) {
   const cv = $('sil'); if (!D) { cv.hidden = true; return; }
   let lens = null, building = false;

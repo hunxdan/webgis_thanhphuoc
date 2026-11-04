@@ -1,0 +1,158 @@
+/* guide.css — trang Hướng dẫn sử dụng (hướng dẫn chung, dễ đọc cho mọi người).
+   Cùng bảng thiết kế với toàn site: giấy kem · lục thẫm · son đỏ, khối vuông, bóng cứng, Lora + Inter.
+   Chữ lớn hơn các trang khác, không có nội dung chỉ hiện khi rê chuột, không cuộn ghim. */
+.page-guide { --gk-card: #fbf4e4; }
+.page-guide main { z-index: 1; }
+.page-guide .sec { padding: clamp(56px, 8vw, 108px) 0; }
+.page-guide .btn.gk-btn { font-size: 13px; padding: 1.05em 1.5em; min-height: 52px; }
+.page-guide .foot__cta { padding-block: clamp(26px, 5vw, 56px); }
+.page-guide .foot__cta b { font-size: clamp(40px, 8vw, 110px); }
+
+.gk-h2 { margin: 14px 0 0; font: 700 clamp(30px, 4.2vw, 58px)/1.08 var(--serif); letter-spacing: -.02em; color: var(--green); max-width: 24ch; }
+.gk-h3 { margin: clamp(36px, 5vw, 60px) 0 16px; font: 700 clamp(22px, 2.4vw, 30px)/1.2 var(--serif); color: var(--ink); }
+
+/* ---------- mở đầu ---------- */
+.gk-hero { padding: calc(var(--bar-h) + clamp(44px, 8vw, 96px)) 0 clamp(44px, 6vw, 72px); }
+.gk-hero__k { margin: 0 0 clamp(14px, 2vw, 22px); display: flex; align-items: center; gap: 14px; }
+.gk-hero__k::before { content: ''; width: 54px; border-top: 2px solid var(--red); }
+.gk-hero__t { margin: 0; font: 700 clamp(32px, 7.2vw, 104px)/1.04 var(--serif); letter-spacing: -.03em; color: var(--green); }
+.gk-hero__t em { color: var(--red); font-weight: 500; }
+.gk-hero__cta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: clamp(22px, 3vw, 36px); }
+.gk-jump { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: clamp(28px, 4vw, 48px); padding-top: 20px; border-top: 3px double var(--green); }
+.gk-jump__l { font: italic 500 19px var(--serif); color: var(--ink-soft); margin-right: 4px; }
+.gk-jump a { text-decoration: none; font: 600 16px/1 var(--sans); color: var(--green); background: var(--gk-card); border: 1.5px solid var(--green); padding: 12px 16px; box-shadow: 3px 3px 0 var(--green); transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s, color .18s; }
+.gk-jump a:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--green); background: var(--green); color: var(--paper); }
+
+/* ---------- 1. ba bước ---------- */
+.gk-steps3 { list-style: none; margin: clamp(28px, 4vw, 52px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); counter-reset: none; }
+.gk-s3 { background: var(--gk-card); border: 1.5px solid var(--green); box-shadow: 5px 5px 0 var(--green); padding: clamp(20px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 10px; }
+.gk-s3__n { font: 700 clamp(64px, 7vw, 92px)/.85 var(--serif); color: var(--red); letter-spacing: -.04em; }
+.gk-s3 h3 { margin: 4px 0 0; font: 700 clamp(22px, 2vw, 28px)/1.2 var(--serif); color: var(--ink); }
+.gk-s3 p { margin: 0; font: 400 18px/1.6 var(--sans); color: var(--ink-soft); }
+.gk-s3 p b, .gk-card b, .gk-note b, .gk-legend b, .gk-dl b, .gk-trouble b, .gk-phone b { color: var(--ink); font-weight: 600; }
+.gk-mini { margin-top: auto; padding-top: 14px; display: flex; align-items: flex-end; gap: 10px; border-top: 1px dashed var(--line); }
+.gk-mini__f { flex: 1; min-width: 0; display: grid; gap: 2px; border-bottom: 2px solid var(--green); padding-bottom: 3px; }
+.gk-mini__f small { font: 600 10px/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--green); }
+.gk-mini__f b { font: 700 24px/1.1 var(--serif); }
+.gk-mini > i { font: 700 24px/1 var(--serif); color: var(--red); font-style: normal; padding-bottom: 6px; }
+.gk-mini__b { background: var(--green); color: var(--paper); font: 600 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; padding: 12px 14px; box-shadow: 3px 3px 0 var(--ink); }
+.gk-note { margin-top: clamp(26px, 3.4vw, 44px); padding: clamp(18px, 2.4vw, 28px) clamp(18px, 2.6vw, 32px); background: var(--paper-2); border-left: 5px solid var(--red); max-width: 78ch; }
+.gk-note > b { display: block; font: 700 clamp(20px, 1.8vw, 24px)/1.25 var(--serif); }
+.gk-note p { margin: 10px 0 0; font: 400 18px/1.6 var(--sans); color: var(--ink-soft); }
+.gk-note a { color: var(--red); font-weight: 600; text-underline-offset: 3px; }
+
+/* ---------- 2. sơ đồ màn hình ---------- */
+.gk-screen-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 60px); align-items: center; margin-top: clamp(28px, 4vw, 52px); }
+.gk-fig { margin: 0; container-type: inline-size; }
+.gk-fig figcaption { margin-top: 14px; color: var(--ink-soft); font-size: 10px; }
+.gk-screen { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper); border: 1.5px solid var(--green); box-shadow: 6px 6px 0 var(--green); font-size: clamp(7px, 1.2vw, 11px); font-size: 1.85cqw; color: var(--ink); background-image: var(--grain, none); background-size: 220px 220px; }
+.gk-screen__map { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .9; }
+.gk-screen__bar { position: absolute; inset: 0 0 auto 0; height: 8.5%; display: flex; align-items: center; justify-content: space-between; padding: 0 2%; background: color-mix(in srgb, var(--paper) 92%, transparent); border-bottom: 1px solid var(--line); }
+.gk-screen__bar b { font: italic 700 1.5em/1 var(--serif); color: var(--green); }
+.gk-screen__bar span { font: 600 .62em/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+.gk-screen__find, .gk-screen__card { position: absolute; left: 2%; background: var(--gk-card); border: 1px solid var(--green); box-shadow: .3em .3em 0 var(--green); }
+.gk-screen__find { top: 12.5%; width: 47%; }
+.gk-screen__tabs { display: flex; border-bottom: 1px solid var(--green); }
+.gk-screen__tabs i { font: 600 .56em/1 var(--sans); font-style: normal; letter-spacing: .1em; text-transform: uppercase; padding: .9em 1.1em; background: var(--paper-2); color: var(--ink-soft); border-right: 1px solid var(--green); }
+.gk-screen__tabs i.on { background: var(--gk-card); color: var(--red); box-shadow: inset 0 .3em 0 var(--red); }
+.gk-screen__fields { display: flex; align-items: flex-end; gap: 1em; padding: .8em 1em; }
+.gk-screen__fields span { flex: 1; display: grid; font: 600 .55em/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--green); border-bottom: .2em solid var(--green); padding-bottom: .2em; }
+.gk-screen__fields span b { font: 700 2.1em/1.1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--ink); }
+.gk-screen__fields em { font: 600 .62em/1 var(--sans); font-style: normal; letter-spacing: .12em; text-transform: uppercase; background: var(--green); color: var(--paper); padding: 1em 1.4em; }
+.gk-screen__card { top: 37%; width: 29%; padding: .9em 1em 1em; display: grid; gap: .5em; }
+.gk-screen__card b { font: 700 1.25em/1.1 var(--serif); }
+.gk-screen__card span { font: 600 .56em/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--green); padding-bottom: .5em; border-bottom: 1px dashed var(--line); }
+.gk-screen__card em { font: 600 .56em/1 var(--sans); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--red); padding-top: .6em; border-top: 3px double var(--green); margin-top: .3em; }
+.gk-screen__tools { position: absolute; right: 1.6%; top: 12.5%; display: grid; gap: .55em; }
+.gk-screen__tools span { width: 3em; height: 3em; display: grid; place-items: center; background: var(--gk-card); border: 1px solid var(--green); box-shadow: .25em .25em 0 var(--green); color: var(--green); }
+.gk-screen__tools svg { width: 62%; height: 62%; }
+.gk-screen__scale { position: absolute; left: 2%; bottom: 3.5%; display: flex; align-items: center; gap: .6em; font: 600 .62em/1 var(--sans); }
+.gk-screen__scale i { width: 7em; height: .55em; border: 1px solid var(--ink); border-top: 0; }
+.gk-pin { position: absolute; width: 2.5em; height: 2.5em; display: grid; place-items: center; background: var(--red); color: var(--paper); font: 700 1.15em/1 var(--serif); border: 2px solid var(--paper); box-shadow: 0 0 0 1.5px var(--red); z-index: 3; }
+.gk-pin--1 { left: 47%; top: 7%; }
+.gk-pin--2 { left: 28%; top: 31%; }
+.gk-pin--3 { right: 7.2%; top: 21%; }
+.gk-pin--4 { left: 20%; bottom: 9%; }
+
+.gk-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.gk-legend li { display: grid; grid-template-columns: 46px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.gk-legend li:first-child { border-top: 1.5px solid var(--green); }
+.gk-legend__n { width: 46px; height: 46px; display: grid; place-items: center; background: var(--red); color: var(--paper); font: 700 24px/1 var(--serif); }
+.gk-legend h3 { margin: 0 0 4px; font: 700 clamp(20px, 1.8vw, 24px)/1.25 var(--serif); }
+.gk-legend p { margin: 0; font: 400 17px/1.55 var(--sans); color: var(--ink-soft); }
+
+.gk-tools { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px clamp(20px, 4vw, 56px); }
+.gk-tools li { display: grid; grid-template-columns: 56px 1fr; gap: 18px; align-items: center; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.gk-tools__i { width: 52px; height: 52px; display: grid; place-items: center; background: var(--gk-card); border: 1.5px solid var(--green); box-shadow: 3px 3px 0 var(--green); color: var(--green); }
+.gk-tools__i svg { width: 28px; height: 28px; }
+.gk-tools h4 { margin: 0 0 2px; font: 700 20px/1.25 var(--serif); }
+.gk-tools p { margin: 0; font: 400 16.5px/1.5 var(--sans); color: var(--ink-soft); }
+
+/* ---------- 3. từng việc ---------- */
+.gk-cards { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.6vw, 36px); margin-top: clamp(28px, 4vw, 52px); align-items: stretch; }
+.gk-card { background: var(--gk-card); border: 1.5px solid var(--green); box-shadow: 5px 5px 0 var(--green); padding: clamp(20px, 2.4vw, 32px); scroll-margin-top: calc(var(--bar-h) + 20px); }
+.gk-card:nth-child(4n+2), .gk-card:nth-child(4n+3) { box-shadow: 5px 5px 0 var(--red); }
+.gk-card h3 { margin: 0 0 16px; display: flex; align-items: center; gap: 14px; font: 700 clamp(21px, 2vw, 27px)/1.2 var(--serif); }
+.gk-card h3 .num { flex: none; width: 40px; height: 40px; display: grid; place-items: center; background: var(--green); color: var(--paper); font: 700 22px/1 var(--serif); }
+.gk-card ol { list-style: none; counter-reset: gk; margin: 0; padding: 0; display: grid; gap: 14px; }
+.gk-card li { counter-increment: gk; position: relative; padding-left: 44px; font: 400 18px/1.6 var(--sans); color: var(--ink-soft); }
+.gk-card li::before { content: counter(gk); position: absolute; left: 0; top: 1px; width: 30px; height: 30px; display: grid; place-items: center; border: 1.5px solid var(--red); color: var(--red); font: 700 16px/1 var(--serif); }
+.gk-tip { margin: 18px 0 0; padding-top: 14px; border-top: 1px dashed var(--line); font: 400 16.5px/1.55 var(--sans); color: var(--ink-soft); }
+.gk-tip b { color: var(--red); }
+#gk-phone, #gk-find, #gk-measure, #gk-plan, #gk-help, #gk-click, #gk-quick { scroll-margin-top: calc(var(--bar-h) + 20px); }
+
+.gk-phone { margin-top: clamp(28px, 4vw, 52px); background: var(--green); color: var(--paper); padding: clamp(24px, 3.4vw, 46px); display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.8fr); gap: clamp(20px, 3vw, 44px); align-items: start; background-image: var(--grain, none); background-size: 220px 220px; }
+.gk-phone .tag.red { color: #f0b9a4; margin: 0 0 10px; }
+.gk-phone h3 { margin: 0; font: 700 clamp(26px, 3vw, 40px)/1.12 var(--serif); }
+.gk-gest { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 28px); }
+.gk-gest li { display: grid; gap: 12px; align-content: start; padding-top: 16px; border-top: 1.5px solid rgba(243, 232, 211, .5); }
+.gk-gest__i { width: 60px; height: 60px; display: grid; place-items: center; background: var(--paper); color: var(--green); box-shadow: 4px 4px 0 var(--red); }
+.gk-gest__i svg { width: 36px; height: 36px; }
+.gk-gest b { display: block; font: 700 22px/1.2 var(--serif); color: var(--paper); }
+.gk-gest p { margin: 4px 0 0; font: 400 17px/1.55 var(--sans); color: rgba(243, 232, 211, .9); }
+.gk-phone__n { grid-column: 1 / -1; margin: 0; padding-top: 16px; border-top: 1px dashed rgba(243, 232, 211, .5); font: 400 17px/1.55 var(--sans); color: rgba(243, 232, 211, .92); }
+.gk-phone__n b { color: var(--paper); }
+
+/* ---------- 4. đọc thẻ ---------- */
+.gk-read { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 6vw, 90px); align-items: start; }
+.gk-stamps { display: flex; flex-wrap: wrap; gap: 28px; margin-top: clamp(28px, 4vw, 48px); padding-left: 6px; }
+.gk-stamp { transform: rotate(-8deg); border: 3px double currentColor; padding: 12px 18px 11px; text-align: center; font-family: var(--sans); text-transform: uppercase; letter-spacing: .16em; mix-blend-mode: multiply; }
+.gk-stamp:nth-child(2) { transform: rotate(5deg); }
+.gk-stamp span { display: block; font-weight: 700; font-size: 12px; }
+.gk-stamp b { display: block; font: 800 20px/1.1 var(--serif); letter-spacing: .08em; }
+.gk-stamp--yes { color: var(--red); }
+.gk-stamp--no { color: var(--green); }
+.gk-dl { margin: 0; border-top: 1.5px solid var(--green); }
+.gk-dl > div { display: grid; grid-template-columns: 190px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+.gk-dl dt { font: 700 21px/1.3 var(--serif); color: var(--green); }
+.gk-dl dd { margin: 0; font: 400 18px/1.6 var(--sans); color: var(--ink-soft); }
+
+/* ---------- 5. khó khăn ---------- */
+.gk-helpgrid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 6vw, 90px); align-items: start; }
+.gk-helpgrid .btn { margin-top: clamp(22px, 3vw, 36px); }
+.gk-trouble { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--green); }
+.gk-trouble li { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.gk-trouble h3 { margin: 0 0 6px; font: 700 clamp(20px, 1.9vw, 25px)/1.3 var(--serif); color: var(--ink); }
+.gk-trouble p { margin: 0; max-width: 60ch; font: 400 18px/1.6 var(--sans); color: var(--ink-soft); }
+
+.noscript { margin: 0; padding: 12px 16px; background: var(--paper-2); font-size: 15px; }
+
+/* ---------- di động ---------- */
+@media (max-width: 900px) {
+  .gk-steps3 { grid-template-columns: 1fr; }
+  .gk-s3__n { font-size: 56px; }
+  .gk-screen-grid, .gk-read, .gk-helpgrid, .gk-phone { grid-template-columns: 1fr; }
+  .gk-cards, .gk-tools { grid-template-columns: 1fr; }
+  .gk-gest { grid-template-columns: 1fr; }
+  .gk-gest li { grid-template-columns: 60px 1fr; gap: 16px; align-items: start; }
+  .gk-dl > div { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 560px) {
+  .gk-jump a { font-size: 15px; padding: 11px 13px; }
+  .gk-card li { padding-left: 40px; font-size: 17.5px; }
+  .gk-hero__cta .btn { width: 100%; justify-content: center; }
+}
+
+/* hạt giấy trên mọi thẻ và bề mặt giấy của trang hướng dẫn (đặt cuối file để không bị các khai báo nền ở trên ghi đè) */
+.gk-s3, .gk-card, .gk-note, .gk-jump a, .gk-tools__i, .gk-legend__n, .gk-card h3 .num, .gk-screen__find, .gk-screen__card, .gk-screen__tools span, .gk-screen__bar, .gk-gest__i, .gk-mini, .gk-mini__b { background-image: var(--grain, none); background-size: 220px 220px; }
+.gk-jump a:hover { background-image: var(--grain, none); }

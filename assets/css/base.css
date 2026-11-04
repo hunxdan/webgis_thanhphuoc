@@ -1,4 +1,4 @@
-/* base.css — nền tảng thiết kế "Địa bạ số": giấy kem · lục thẫm · son đỏ */
+/* base.css — nền tảng thiết kế "Đất đai số": giấy kem · lục thẫm · son đỏ */
 @font-face { font-family: 'Lora'; src: url('../fonts/lora.woff') format('woff'); font-weight: 400 700; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Lora'; src: url('../fonts/lora-italic.woff') format('woff'); font-weight: 400 700; font-style: italic; font-display: swap; }
 @font-face { font-family: 'Inter'; src: url('../fonts/inter-400.woff') format('woff'); font-weight: 400; font-display: swap; }
@@ -69,6 +69,12 @@ button { cursor: pointer; }
 .nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
 .nav a:hover::after, .nav a[aria-current='page']::after { transform: scaleX(1); }
 .nav a[aria-current='page'] { color: var(--green); }
+@media (max-width: 560px) { /* ba mục điều hướng vẫn vừa một hàng trên điện thoại */
+  .brand span { display: none; }
+  .brand b { font-size: 17px; }
+  .nav { gap: 12px; }
+  .nav a { letter-spacing: .06em; font-size: 10.5px; }
+}
 
 /* ---------- lớp phủ: hạt giấy + chuyển cảnh ---------- */
 #grain { display: none; } /* hạt giấy nay là nền của các bề mặt giấy (biến --grain), không còn lớp phủ toàn màn hình */

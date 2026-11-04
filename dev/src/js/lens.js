@@ -1,4 +1,4 @@
-// lens.js — "kính lúp địa bạ": sơ đồ nét mảnh của cả xã; kính lúp (theo con trỏ, tự di chuyển khi không ai chạm)
+// lens.js — "kính lúp bản đồ": sơ đồ nét mảnh của cả xã; kính lúp (theo con trỏ, tự di chuyển khi không ai chạm)
 // phóng to và tô màu hiện trạng đất thật bên trong. Canvas2D thuần, chỉ vẽ khi đang trong màn hình.
 import { colTD } from './util.js';
 import { bakeCanvas } from './bake.js';
