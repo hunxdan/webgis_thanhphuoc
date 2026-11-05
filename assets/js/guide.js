@@ -25,6 +25,7 @@
   var nf0 = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 });
   var nf1 = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
   var nf2 = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 2 });
+  var fmt0 = (n) => nf0.format(n);
   var OFFLINE = location.protocol === "file:";
   var CRC_T = (() => {
     const t = new Uint32Array(256);
@@ -188,8 +189,8 @@
   var RESERVED = /* @__PURE__ */ new Set(["duration", "delay", "ease", "stagger", "onUpdate", "onComplete", "from"]);
   var toList = (t) => typeof t === "string" ? [...document.querySelectorAll(t)] : t instanceof Element || !t.length ? [t] : [...t];
   var Tw = class {
-    constructor(target, vars, forceFrom) {
-      this.targets = toList(target);
+    constructor(target2, vars, forceFrom) {
+      this.targets = toList(target2);
       this.dur = Math.max(1e-4, reduced ? 1e-4 : vars.duration ?? 0.6);
       this.delay = reduced ? 0 : vars.delay ?? 0;
       this.stag = reduced ? 0 : vars.stagger ?? 0;
@@ -279,20 +280,20 @@
       this.len = Math.max(this.len, this.lastEnd);
       return this;
     }
-    to(target, vars, pos) {
-      return this._add(new Tw(target, { ...this.def, ...vars }), pos);
+    to(target2, vars, pos) {
+      return this._add(new Tw(target2, { ...this.def, ...vars }), pos);
     }
-    from(target, vars, pos) {
-      const tw = new Tw(target, { ...this.def, ...vars }, true);
+    from(target2, vars, pos) {
+      const tw = new Tw(target2, { ...this.def, ...vars }, true);
       tw.capture();
       tw.render(0);
       return this._add(tw, pos);
     }
-    fromTo(target, from, to, pos) {
-      return this._add(new Tw(target, { ...this.def, ...to, from }), pos);
+    fromTo(target2, from, to, pos) {
+      return this._add(new Tw(target2, { ...this.def, ...to, from }), pos);
     }
-    set(target, vars, pos) {
-      return this.to(target, { ...vars, duration: 1e-4 }, pos);
+    set(target2, vars, pos) {
+      return this.to(target2, { ...vars, duration: 1e-4 }, pos);
     }
     call(fn, pos) {
       this.items.push({ start: this._pos(pos), fn });
@@ -770,10 +771,92 @@ void main(){
     $("foot-team").textContent = `Th\u1EF1c hi\u1EC7n: ${CFG.NHOM_THUC_HIEN.join(" \xB7 ")}`;
     $("foot-copy").textContent = `\xA9 ${(/* @__PURE__ */ new Date()).getFullYear()} ${CFG.TEN_DU_AN} \xB7 ${CFG.BAN_QUYEN}`;
   });
-  requestAnimationFrame(() => {
-    try {
-      curtain.reveal({ x: innerWidth * 0.7, y: innerHeight * 0.4 }, 0.8);
-    } catch {
-    }
+  $("loader-tag").textContent = `${CFG.TEN_XA} \xB7 ${CFG.TEN_TINH}`;
+  var target = CFG.THONG_KE?.[0]?.so || 17820;
+  var lp = 0;
+  var shown = 0;
+  var loadTick = motion_default.ticker.add((dt) => {
+    shown += (lp * target - shown) * Math.min(1, dt * 5);
+    $("loader-n").textContent = fmt0(Math.round(shown));
+  });
+  var step = (p) => {
+    lp = Math.max(lp, p);
+  };
+  var wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  setTimeout(() => {
+    safe(() => {
+      const l = $("loader");
+      if (l && !l.hidden) {
+        l.hidden = true;
+        curtain.reveal({ x: innerWidth * 0.5, y: innerHeight * 0.5 });
+        startMotion();
+      }
+    });
+  }, 8e3);
+  var motionStarted = false;
+  function startMotion() {
+    if (motionStarted) return;
+    motionStarted = true;
+    safe(heroIntro);
+    safe(wireReveal);
+  }
+  function heroIntro() {
+    const t = document.querySelector(".gk-hero__t");
+    const sp = motion_default.splitText(t, { chars: true });
+    motion_default.timeline().from(".gk-hero__k", { y: 16, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.1).from(sp.chars, { yPercent: 112, rotate: 5, duration: 1, stagger: 0.025, ease: "expo.out" }, 0.15).from(".gk-hero__cta", { y: 22, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.85).from(".gk-jump", { y: 22, opacity: 0, duration: 0.8, ease: "power3.out" }, 1.05);
+  }
+  function wireReveal() {
+    document.querySelectorAll(".gk-h2").forEach((el) => {
+      const sp = motion_default.splitText(el, { chars: false });
+      const tl = motion_default.timeline({ paused: true }).from(sp.words, { yPercent: 108, rotate: 3, duration: 0.95, stagger: 0.07, ease: "expo.out" });
+      motion_default.enter(el, () => tl.play());
+    });
+    const up = (sel, cols = 1) => document.querySelectorAll(sel).forEach((el, i) => {
+      const tl = motion_default.timeline({ paused: true }).from(el, { y: 34, opacity: 0, duration: 0.9, delay: i % cols * 0.1, ease: "power3.out" });
+      motion_default.enter(el, () => tl.play(), { margin: "0px 0px -8% 0px" });
+    });
+    up(".gk-sec .tag.red:not(.gk-phone .tag)");
+    up(".gk-s3", 3);
+    up(".gk-note");
+    up(".gk-fig");
+    up(".gk-legend li");
+    up(".gk-h3");
+    up(".gk-tools li", 2);
+    up(".gk-card", 2);
+    up(".gk-phone");
+    up(".gk-dl > div");
+    up(".gk-trouble li");
+    up(".gk-helpgrid .btn");
+    document.querySelectorAll(".gk-stamp").forEach((el, i) => {
+      const tl = motion_default.timeline({ paused: true }).from(el, { opacity: 0, duration: 0.9, delay: 0.15 + i * 0.25, ease: "power2.out" });
+      motion_default.enter(el, () => tl.play(), { margin: "0px 0px -8% 0px" });
+    });
+    document.querySelectorAll(".gk-gest li").forEach((el, i) => {
+      const tl = motion_default.timeline({ paused: true }).from(el, { y: 24, opacity: 0, duration: 0.8, delay: i * 0.12, ease: "power3.out" });
+      motion_default.enter(el, () => tl.play(), { margin: "0px 0px -5% 0px" });
+    });
+  }
+  (async () => {
+    step(0.2);
+    const fontsReady = (document.fonts?.ready || Promise.resolve()).then(() => step(0.65));
+    const pageLoaded = document.readyState === "complete" ? Promise.resolve() : new Promise((r) => addEventListener("load", r, { once: true }));
+    await Promise.all([fontsReady.catch(() => {
+    }), pageLoaded, wait(900)]);
+    step(1);
+    await wait(650);
+    motion_default.ticker.remove(loadTick);
+    $("loader-n").textContent = fmt0(target);
+    await wait(150);
+    motion_default.to($("loader"), { opacity: 0, duration: 0.25 });
+    await wait(80);
+    $("loader").hidden = true;
+    curtain.reveal({ x: innerWidth * 0.7, y: innerHeight * 0.4 }, 0.8);
+    startMotion();
+  })().catch(() => {
+    safe(() => {
+      $("loader").hidden = true;
+      curtain.reveal({ x: 0, y: 0 });
+      startMotion();
+    });
   });
 })();

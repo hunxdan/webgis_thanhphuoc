@@ -156,3 +156,10 @@
 /* hạt giấy trên mọi thẻ và bề mặt giấy của trang hướng dẫn (đặt cuối file để không bị các khai báo nền ở trên ghi đè) */
 .gk-s3, .gk-card, .gk-note, .gk-jump a, .gk-tools__i, .gk-legend__n, .gk-card h3 .num, .gk-screen__find, .gk-screen__card, .gk-screen__tools span, .gk-screen__bar, .gk-gest__i, .gk-mini, .gk-mini__b { background-image: var(--grain, none); background-size: 220px 220px; }
 .gk-jump a:hover { background-image: var(--grain, none); }
+
+/* màn tải (cùng kiểu với trang Tra cứu và Giới thiệu) */
+.loader { position: fixed; inset: 0; z-index: 110; display: grid; place-content: center; text-align: center; color: var(--paper); gap: 4px; pointer-events: none; }
+.loader .tag { color: rgba(243, 232, 211, .7); }
+.loader__n { margin: 0; font: 700 clamp(64px, 16vw, 168px)/1 var(--serif); letter-spacing: -.03em; }
+.loader__t { margin: 0; font: italic 400 16px/1.4 var(--serif); color: rgba(243, 232, 211, .8); }
+.loader[hidden], html:not(.js) .loader { display: none; }
